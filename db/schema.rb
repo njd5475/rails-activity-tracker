@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150522021421) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "activities", force: :cascade do |t|
     t.string   "description"
     t.datetime "start"
