@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 # add additional items here at the top.
+gem 'backbone-rails'
 gem 'haml-rails'
 gem 'react-rails'
 

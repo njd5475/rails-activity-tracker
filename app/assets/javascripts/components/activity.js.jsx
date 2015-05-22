@@ -1,7 +1,7 @@
 var Activity = React.createClass({
 
   render: function() {
-    return <div>Hello World!</div>;
+    return <div>Hello World! Danger</div>;
   }
 });
 
