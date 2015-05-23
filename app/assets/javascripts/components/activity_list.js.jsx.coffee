@@ -1,3 +1,9 @@
+#= require underscore
+
 @ActivityList = React.createClass
   render: ->
-    `<div />`
+    list = _.map @props.activities, (activity) ->
+      `<Activity description={activity.description} />`
+    `<div>
+      {list}
+    </div>`

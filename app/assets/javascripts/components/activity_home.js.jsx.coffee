@@ -1,16 +1,25 @@
+#= require ../models
+
 @ActivityHome = React.createClass
   getInitialState: ->
-    collection: null
+    col = new ActivityCollection
+    col.on 'sync', =>
+      @setState collection: @state.collection
+
+    collection: col
 
   componentDidMount: ->
-    if !@state.collection
-      col = new ActivityCollection
-      col.fetch()
-      @setState collection: col
+    @updateActivities()
 
+  updateActivities: ->
+    @state.collection.fetch()
 
   render: ->
+    list = @state.collection.map (amodel) ->
+      # return just the hash of attributes for now
+      amodel.attributes
+
     `<div>
       <ActivityEdit />
-      <ActivityList />
+      <ActivityList activities={list}/>
     </div>`
