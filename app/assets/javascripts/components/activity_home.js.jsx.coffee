@@ -1,4 +1,16 @@
 @ActivityHome = React.createClass
+  getInitialState: ->
+    collection: null
+
+  componentDidMount: ->
+    if !@state.collection
+      col = new ActivityCollection
+      col.fetch()
+      @setState collection: col
+
+
   render: ->
-    `<ActivityEdit />`
-    `<ActivityList />`
+    `<div>
+      <ActivityEdit />
+      <ActivityList />
+    </div>`

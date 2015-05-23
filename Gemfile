@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
 # add additional items here at the top.
+
+# they told me too stackoverflow.com/questions/18878488/rails-4-coffeescript-only-works-when-there-is-a-post-request-or-when-i-reload-t
+gem 'jquery-turbolinks'
 gem 'backbone-rails'
 gem 'haml-rails'
 gem 'react-rails'
