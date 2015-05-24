@@ -19,7 +19,7 @@
       # return just the hash of attributes for now
       amodel.attributes
 
-    `<div>
+    `<div className='container-fluid'>
       <ActivityEdit />
       <ActivityList activities={list}/>
     </div>`

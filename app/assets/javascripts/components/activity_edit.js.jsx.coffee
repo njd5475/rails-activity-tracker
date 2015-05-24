@@ -8,13 +8,22 @@
   startTracking: ->
     model = new ActivityModel description: @state.userInput
     model.save()
+    return false #for form submission
 
   render: ->
-    `<div>
-      <input
-        ref="description"
-        type="text"
-        value={this.state.userInput}
-        onChange={this.handleChange} />
-      <button onClick={this.startTracking}>Start Tracking</button>
+    `<div className="row-fluid">
+      <form className="form-inline">
+        <div className="form-group">
+          <input
+            ref="description"
+            type="text"
+            className="form-control"
+            value={this.state.userInput}
+            onChange={this.handleChange} />
+          <button
+            type="submit"
+            className="btn btn-default"
+            onClick={this.startTracking}>Start Tracking</button>
+        </div>
+      </form>
     </div>`
