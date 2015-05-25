@@ -20,6 +20,6 @@
       amodel.attributes
 
     `<div className='container-fluid'>
-      <ActivityEdit />
+      <ActivityEdit collection={this.state.collection} />
       <ActivityList activities={list}/>
     </div>`

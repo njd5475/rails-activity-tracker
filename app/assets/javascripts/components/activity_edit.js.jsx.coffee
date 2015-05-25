@@ -7,7 +7,8 @@
 
   startTracking: ->
     model = new ActivityModel description: @state.userInput
-    model.save()
+    model.save().success =>
+      @props.collection.fetch()
     return false #for form submission
 
   render: ->
