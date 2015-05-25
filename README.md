@@ -15,4 +15,4 @@ Features List
 Live Example
 ===
 
-Goto http://railstime.heroku.com
+Goto https://railstime.heroku.com
