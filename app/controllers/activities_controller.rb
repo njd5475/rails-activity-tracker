@@ -1,9 +1,11 @@
 class ActivitiesController < ApplicationController
 
   def index
+    @todaysActivities = Activity.todays
+
     respond_to do |format|
       format.html
-      format.json { render json: Activity.todays}
+      format.json { render json: @todaysActivities}
     end
   end
 

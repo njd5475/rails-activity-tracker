@@ -2,7 +2,7 @@
 
 @ActivityHome = React.createClass
   getInitialState: ->
-    col = new ActivityCollection
+    col = new ActivityCollection(@props.initialCollection)
     col.on 'sync', =>
       @setState collection: @state.collection
 
@@ -19,7 +19,12 @@
       # return just the hash of attributes for now
       amodel.attributes
 
-    `<div className='container-fluid'>
+    current = null
+    if @state.collection.getCurrent()?
+      current = `<ActivityCurrent activity={this.state.collection.getCurrent().attributes} />`
+
+    `<div className='container'>
+      {current}
       <ActivityEdit collection={this.state.collection} />
       <ActivityList activities={list}/>
     </div>`

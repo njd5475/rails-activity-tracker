@@ -21,16 +21,16 @@
     endTime = if @props.end then moment(@props.end) else null
     duration = countdown(moment(@props.start), endTime).toString()
 
-    `<div className="row-fluid">
-      <div className="col-md-2">
+    `<div className="row">
+      <div className="col-xs-2 col-md-2">
         <ActivityTime time={this.props.start} />
         &nbsp;-&nbsp;
         <ActivityTime time={this.props.end} />
       </div>
-      <div className="col-md-8">
+      <div className="col-xs-8 col-md-8">
         {this.props.description}
       </div>
-      <div className="col-md-2">
+      <div className="col-xs-2 col-md-2">
         {duration}
       </div>
     </div>`

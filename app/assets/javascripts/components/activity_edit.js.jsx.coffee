@@ -12,7 +12,7 @@
     return false #for form submission
 
   render: ->
-    `<div className="row-fluid">
+    `<div className="row">
       <form className="form-inline">
         <div className="form-group">
           <input
@@ -23,7 +23,7 @@
             onChange={this.handleChange} />
           <button
             type="submit"
-            className="btn btn-default"
+            className="btn btn-default pull-right"
             onClick={this.startTracking}>Start Tracking</button>
         </div>
       </form>
