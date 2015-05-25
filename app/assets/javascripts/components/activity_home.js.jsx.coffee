@@ -9,10 +9,17 @@
     collection: col
 
   componentDidMount: ->
-    @updateActivities()
+    # prevent initial request for collection if already set
+    if !@props.initialCollection?
+      @updateActivities()
 
   updateActivities: ->
     @state.collection.fetch()
+
+  onStopCurrent: (e) ->
+    ($.ajax url: e.stop, type: 'PUT').success =>
+      debugger
+      @updateActivities()
 
   render: ->
     list = @state.collection.map (amodel) ->
@@ -21,10 +28,12 @@
 
     current = null
     if @state.collection.getCurrent()?
-      current = `<ActivityCurrent activity={this.state.collection.getCurrent().attributes} />`
+      current = `<ActivityCurrent onStopCurrent={this.onStopCurrent} activity={this.state.collection.getCurrent().attributes} />`
+    else
+      current = `<div className="row"><h1>No current activity</h1></div>`
 
     `<div className='container'>
       {current}
-      <ActivityEdit collection={this.state.collection} />
+      <ActivityNew collection={this.state.collection} />
       <ActivityList activities={list}/>
     </div>`

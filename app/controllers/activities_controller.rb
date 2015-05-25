@@ -1,7 +1,11 @@
 class ActivitiesController < ApplicationController
 
   def index
-    @todaysActivities = Activity.todays
+    @todaysActivities = Activity.todays.collect do |a|
+      h = a.as_json
+      h[:stop] = stop_activity_path(a)
+      h
+    end
 
     respond_to do |format|
       format.html
@@ -26,5 +30,17 @@ class ActivitiesController < ApplicationController
     render json: @activity
   end
 
+  def show
+    activity = Activity.find params[:id]
 
+    render json: activity
+  end
+
+  def stop
+    activity = Activity.find params[:id]
+    activity.end = Time.now
+    activity.save!
+
+    render json: activity
+  end
 end

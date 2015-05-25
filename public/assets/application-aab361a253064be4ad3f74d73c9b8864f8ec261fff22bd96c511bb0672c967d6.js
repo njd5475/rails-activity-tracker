@@ -35028,7 +35028,7 @@ function(module) {
 
 }).call(this);
 (function() {
-  this.ActivityEdit = React.createClass({displayName: "ActivityEdit",
+  this.ActivityNew = React.createClass({displayName: "ActivityNew",
     getInitialState: function() {
       return {
         userInput: ''

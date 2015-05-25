@@ -14,6 +14,9 @@
   updateCount: ->
     @setState count: @state.count+1
 
+  onStopCurrent: ->
+    @props.onStopCurrent(@props.activity)
+
   render: ->
     countdown.setLabels(
       '|||hr|d',
@@ -30,6 +33,12 @@
         <div className="row">
           <div className="container">
             <div className="row">
+              <div className="pull-right">
+                <button className="btn"
+                  onClick={this.onStopCurrent}>
+                  Stop Tracking
+                </button>
+              </div>
               <h4>{this.props.activity.description}</h4>
             </div>
             <div className="row">

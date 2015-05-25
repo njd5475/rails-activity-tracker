@@ -7,7 +7,11 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
-  resources :activities
+  resources :activities do
+    member do
+      put 'stop'
+    end
+  end
 
   root to: 'activities#index'
 

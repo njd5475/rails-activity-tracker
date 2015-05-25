@@ -1,4 +1,4 @@
-@ActivityEdit = React.createClass
+@ActivityNew = React.createClass
   getInitialState: ->
     return userInput: ''
 
@@ -12,6 +12,10 @@
     return false #for form submission
 
   render: ->
+    trackingText = "Start Tracking"
+    if @props.collection.getCurrent()?
+      trackingText = "Switch"
+
     `<div className="row">
       <form className="form-inline">
         <div className="form-group">
@@ -24,7 +28,7 @@
           <button
             type="submit"
             className="btn btn-default pull-right"
-            onClick={this.startTracking}>Start Tracking</button>
+            onClick={this.startTracking}>{trackingText}</button>
         </div>
       </form>
     </div>`
