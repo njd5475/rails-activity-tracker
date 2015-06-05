@@ -1,4 +1,4 @@
+
 %div
+  = react_component 'MainNav', {logout_url: destroy_user_session_path}, {prerender: true}
   = react_component 'ActivityHome', {initialCollection: @todaysActivities}, {prerender: true}
-%div
-  = link_to 'Logout', destroy_user_session_path, :method => :delete
