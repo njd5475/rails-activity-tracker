@@ -1,2 +1,4 @@
 %div
   = react_component 'ActivityHome', {initialCollection: @todaysActivities}, {prerender: true}
+%div
+  = link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2)

@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 # add additional items here at the top.
 gem 'bundler', '>= 1.8.4'
 
+gem 'devise'
+gem 'omniauth-google-oauth2'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap'
   gem 'rails-assets-countdownjs'
@@ -56,5 +59,7 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'minitest'
 end
 
