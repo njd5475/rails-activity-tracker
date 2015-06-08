@@ -10,9 +10,10 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap'
   gem 'rails-assets-countdownjs'
   gem 'rails-assets-moment'
+  gem 'rails-assets-typeahead.js'
 end
 
-gem "bower-rails", "~> 0.9.2"\
+gem 'bower-rails', '~> 0.9.2'
 # they told me too stackoverflow.com/questions/18878488/rails-4-coffeescript-only-works-when-there-is-a-post-request-or-when-i-reload-t
 gem 'jquery-turbolinks'
 gem 'backbone-rails'
