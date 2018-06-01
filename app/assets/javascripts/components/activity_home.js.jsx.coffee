@@ -18,7 +18,6 @@
 
   onStopCurrent: (e) ->
     ($.ajax url: e.stop, type: 'PUT').success =>
-      debugger
       @updateActivities()
 
   render: ->
@@ -32,8 +31,11 @@
     else
       current = `<div className="row"><h1>No current activity</h1></div>`
 
+    updater = @updateActivities.bind(this)
+
     `<div className='container'>
       {current}
       <ActivityNew collection={this.state.collection} />
-      <ActivityList activities={list}/>
+      <ActivityList sort_descending={true} updater={updater} activities={list}/>
+      <ActivityHistory updater={updater} activities={this.props.history} />
     </div>`

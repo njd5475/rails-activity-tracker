@@ -2,12 +2,21 @@
 
 @ActivityList = React.createClass
   render: ->
-    list = _.map @props.activities, (activity) ->
-      `<Activity description={activity.description} start={activity.start} end={activity.end} />`
+    title = @props.title || "Todays"
+    updater = @props.updater
+    activities = @props.activities
+
+    if @props.sort_descending
+      activities = _.sortBy activities, (a) ->
+        return moment(a.end || a.start).valueOf() * -1 
+
+    list = _.map activities, (activity) ->
+      `<Activity updater={updater} {...activity} />`
+
     `<div className="row">
       <div className="container">
         <div className="row">
-          <h3>Todays</h3>
+          <h3>{title}</h3>
         </div>
         <div className="row">
           <div className="container">

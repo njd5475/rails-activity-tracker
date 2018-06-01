@@ -1,4 +1,4 @@
 
 %div
   = react_component 'MainNav', {username: current_user.email, logout_url: destroy_user_session_path}, {prerender: true}
-  = react_component 'ActivityHome', {initialCollection: @todaysActivities}, {prerender: true}
+  = react_component 'ActivityHome', {initialCollection: @todaysActivities, history: @history}, {prerender: true}
