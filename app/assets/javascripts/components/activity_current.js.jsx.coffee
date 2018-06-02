@@ -8,7 +8,7 @@
   componentDidMount: ->
     @setState interval: setInterval @updateCount, 1000
 
-  componentDidUnmount: ->
+  componentWillUnmount: ->
     clearInterval(@state.interval)
 
   updateCount: ->

@@ -20,7 +20,6 @@
       <form className="form-inline">
         <div className="form-group">
           <input
-            ref="description"
             type="text"
             className="form-control"
             value={this.state.userInput}

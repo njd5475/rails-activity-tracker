@@ -7,7 +7,7 @@
   componentDidMount: ->
     @setState interval: setInterval @updateCount, 1000
 
-  componentDidUnmount: ->
+  componentWillUnmount: ->
     clearInterval(@state.interval)
 
   updateCount: ->
@@ -31,7 +31,7 @@
     resume = ''
     stop = ''
     if !@props.end
-      handler = this.handleStop.bind(@)
+      handler = this.handleStop
       stop = `<ActivityStop stop={handler} />`
     else
       resume = `<ActivityResume />`

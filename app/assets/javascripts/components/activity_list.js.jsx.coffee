@@ -8,10 +8,10 @@
 
     if @props.sort_descending
       activities = _.sortBy activities, (a) ->
-        return moment(a.end || a.start).valueOf() * -1 
+        return moment(a.end || a.start).valueOf() * -1
 
     list = _.map activities, (activity) ->
-      `<Activity updater={updater} {...activity} />`
+      `<Activity key={activity.id} updater={updater} {...activity} />`
 
     `<div className="row">
       <div className="container">

@@ -31,7 +31,7 @@
     else
       current = `<div className="row"><h1>No current activity</h1></div>`
 
-    updater = @updateActivities.bind(this)
+    updater = @updateActivities
 
     `<div className='container'>
       {current}
