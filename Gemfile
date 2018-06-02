@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 # add additional items here at the top.
+ruby "2.2.7"
 gem 'bundler', '>= 1.8.4'
 
 gem 'devise'
