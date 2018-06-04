@@ -5,10 +5,14 @@
   handleChange: (e) ->
     @setState userInput: e.target.value
 
-  startTracking: ->
+  startTracking: (e) ->
+    e.preventDefault()
     model = new ActivityModel description: @state.userInput
-    model.save().success =>
+    model.save().success(=>
       @props.collection.fetch()
+    ).fail(=>
+      console.log(arguments)
+    )
     return false #for form submission
 
   render: ->
