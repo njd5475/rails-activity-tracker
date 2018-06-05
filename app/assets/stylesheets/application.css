@@ -14,3 +14,13 @@
  *= require_tree .
  *= require_self
  */
+
+ .center_div {
+     margin: 0 auto;
+     width:80% /* value of your choice which suits your alignment */
+ }
+
+.site-well {
+  padding-bottom: 10px;
+  border: 1px solid #ccc;
+}

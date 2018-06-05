@@ -1,4 +1,3 @@
 
-%div
-  = react_component 'MainNav', {username: current_user.email, logout_url: destroy_user_session_path}
+.container-fluid
   = react_component 'ActivityHome', {initialCollection: @todaysActivities, history: @history}

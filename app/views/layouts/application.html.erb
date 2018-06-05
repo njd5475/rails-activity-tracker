@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<%= react_component 'MainNav', (@user_info or {}) %>
 <%= yield %>
 
 </body>
