@@ -1,6 +1,6 @@
-@ActivityNew = React.createClass
-  getInitialState: ->
-    return userInput: ''
+class ActivityNew extends React.Component
+  state:
+    userInput: ''
 
   handleChange: (e) ->
     @setState userInput: e.target.value
@@ -35,3 +35,5 @@
         </div>
       </form>
     </div>`
+
+@ActivityNew = ActivityNew

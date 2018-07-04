@@ -1,6 +1,8 @@
 #= require underscore
 
-@ActivityList = React.createClass
+Row = ReactBootstrap.Row
+
+class ActivityList extends React.Component
   render: ->
     title = @props.title || "Todays"
     updater = @props.updater
@@ -13,7 +15,7 @@
     list = _.map activities, (activity) ->
       `<Activity key={activity.id} updater={updater} {...activity} />`
 
-    `<div className="row">
+    `<Row>
       <div className="container">
         <div className="row">
           <h3>{title}</h3>
@@ -24,4 +26,6 @@
           </div>
         </div>
       </div>
-    </div>`
+    </Row>`
+
+@ActivityList = ActivityList

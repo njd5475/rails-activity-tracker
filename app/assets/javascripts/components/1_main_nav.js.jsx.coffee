@@ -1,4 +1,4 @@
-@MainNav = React.createClass
+class MainNav extends React.Component
   logoutComponent: ->
     if !@props.logout_url then return ''
 
@@ -23,3 +23,5 @@
         </ul>
       </div>
     </nav>`
+
+@MainNav = MainNav

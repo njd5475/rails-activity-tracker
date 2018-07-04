@@ -18,8 +18,9 @@ class ActivitySummary extends React.Component
 
     m = _.reduce activities, r, {}
 
+    i = 0
     m = _.map m, (v, k) ->
-      `<ActivityTotal title={k} time={v} />`
+      `<ActivityTotal key={++i} title={k} time={v} />`
 
     return m
 

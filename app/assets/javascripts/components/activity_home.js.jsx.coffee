@@ -1,12 +1,13 @@
 #= require ../models
 
-@ActivityHome = React.createClass
-  getInitialState: ->
-    col = new ActivityCollection(@props.initialCollection)
-    col.on 'sync', =>
-      @setState collection: @state.collection
+class ActivityHome extends React.Component
+  state:
+    collection: new ActivityCollection([])
 
-    collection: col
+  constructor: (props) ->
+    @col = new ActivityCollection(props.initialCollection)
+    @col.on 'sync', =>
+      @setState collection: @state.collection
 
   componentDidMount: ->
     # prevent initial request for collection if already set
@@ -39,3 +40,5 @@
       <ActivityList sort_descending={true} updater={updater} activities={list}/>
       <ActivityHistory updater={updater} activities={this.props.history} />
     </div>`
+
+@ActivityHome = ActivityHome

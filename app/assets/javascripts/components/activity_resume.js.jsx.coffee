@@ -1,5 +1,7 @@
 #= require ../models
 
-@ActivityResume = React.createClass
+class ActivityResume extends React.Component
   render: ->
     `<button>Resume</button>`
+
+@ActivityResume = ActivityResume

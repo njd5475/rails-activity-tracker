@@ -1,7 +1,7 @@
 #= require moment
 #= require countdownjs
 
-@ActivityCurrent = React.createClass
+class ActivityCurrent extends React.Component
   getInitialState: ->
     count: 0
 
@@ -48,3 +48,5 @@
         </div>
       </div>
     </div>`
+
+@ActivityCurrent = ActivityCurrent

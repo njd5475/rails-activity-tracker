@@ -9,6 +9,7 @@ gem 'omniauth-google-oauth2'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap', '3.3.7'
+  gem 'rails-assets-react-bootstrap'
   gem 'rails-assets-countdownjs'
   gem 'rails-assets-moment'
   gem 'rails-assets-typeahead.js'

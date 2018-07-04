@@ -1,23 +1,26 @@
 #= require countdownjs
 
-@Activity = React.createClass
-  getInitialState: ->
-    count: 0
+class Activity extends React.Component
 
-  componentDidMount: ->
+  constructor: (props) ->
+    super props
+    @state =
+      count: 0
+
+  componentDidMount: =>
     @setState interval: setInterval @updateCount, 1000
 
-  componentWillUnmount: ->
+  componentWillUnmount: =>
     clearInterval(@state.interval)
 
-  updateCount: ->
+  updateCount: =>
     @setState count: @state.count+1
 
-  handleStop: ->
+  handleStop: =>
     ($.ajax url: @props.stop, type: 'PUT').success =>
       @props.updater()
 
-  render: ->
+  render: =>
     countdown.setLabels(
       '|||hr|d',
       'ms|sec|min|||wks||yrs',
@@ -50,3 +53,5 @@
         {duration}
       </div>
     </div>`
+
+@Activity = Activity
