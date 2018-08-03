@@ -2,10 +2,10 @@ class ActivityNew extends React.Component
   state:
     userInput: ''
 
-  handleChange: (e) ->
+  handleChange: (e) =>
     @setState userInput: e.target.value
 
-  startTracking: (e) ->
+  startTracking: (e) =>
     e.preventDefault()
     model = new ActivityModel description: @state.userInput
     model.save().success(=>
@@ -15,7 +15,7 @@ class ActivityNew extends React.Component
     )
     return false #for form submission
 
-  render: ->
+  render: =>
     trackingText = "Start Tracking"
     if @props.collection.getCurrent()?
       trackingText = "Switch"

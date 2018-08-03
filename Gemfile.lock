@@ -159,6 +159,7 @@ GEM
     rails-assets-react (16.1.0)
     rails-assets-react-bootstrap (0.31.5)
       rails-assets-react
+    rails-assets-reactjs--react-transition-group (2.4.0)
     rails-assets-typeahead.js (0.11.1)
       rails-assets-jquery (>= 1.7)
     rails-deprecated_sanitizer (1.0.3)
@@ -255,6 +256,7 @@ DEPENDENCIES
   rails-assets-countdownjs!
   rails-assets-moment!
   rails-assets-react-bootstrap!
+  rails-assets-reactjs--react-transition-group!
   rails-assets-typeahead.js!
   react-rails (= 2.0.0)
   sass-rails (~> 5.0)

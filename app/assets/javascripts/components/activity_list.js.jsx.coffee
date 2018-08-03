@@ -3,7 +3,7 @@
 Row = ReactBootstrap.Row
 
 class ActivityList extends React.Component
-  render: ->
+  render: =>
     title = @props.title || "Todays"
     updater = @props.updater
     activities = @props.activities

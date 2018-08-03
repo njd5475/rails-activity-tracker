@@ -7,7 +7,7 @@ class ActivitySummary extends React.Component
       summary: @summarize(props.activities)
     }
 
-  summarize: (activities) ->
+  summarize: (activities) =>
     m = {}
 
     r = (m, a) ->
@@ -24,7 +24,7 @@ class ActivitySummary extends React.Component
 
     return m
 
-  render: ->
+  render: =>
 
     `<div className="row">
       <h2>Summary</h2>

@@ -2,19 +2,20 @@
 #= require countdownjs
 
 class ActivityCurrent extends React.Component
-  getInitialState: ->
-    count: 0
+  constructor: (props) ->
+    super props
+    @state = count: 0
 
   componentDidMount: ->
     @setState interval: setInterval @updateCount, 1000
 
-  componentWillUnmount: ->
+  componentWillUnmount: =>
     clearInterval(@state.interval)
 
-  updateCount: ->
+  updateCount: =>
     @setState count: @state.count+1
 
-  onStopCurrent: ->
+  onStopCurrent: =>
     @props.onStopCurrent(@props.activity)
 
   render: ->

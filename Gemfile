@@ -13,6 +13,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-countdownjs'
   gem 'rails-assets-moment'
   gem 'rails-assets-typeahead.js'
+  gem 'rails-assets-reactjs--react-transition-group'
 end
 
 gem 'bower-rails', '~> 0.9.2'

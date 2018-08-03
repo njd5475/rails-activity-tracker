@@ -1,12 +1,10 @@
 #= require ../models
 
 class ActivityHome extends React.Component
-  state:
-    collection: new ActivityCollection([])
 
   constructor: (props) ->
-    @col = new ActivityCollection(props.initialCollection)
-    @col.on 'sync', =>
+    @state = collection: new ActivityCollection(props.initialCollection)
+    @state.collection.on 'sync', =>
       @setState collection: @state.collection
 
   componentDidMount: ->
@@ -14,14 +12,14 @@ class ActivityHome extends React.Component
     if !@props.initialCollection?
       @updateActivities()
 
-  updateActivities: ->
+  updateActivities: =>
     @state.collection.fetch()
 
-  onStopCurrent: (e) ->
+  onStopCurrent: (e) =>
     ($.ajax url: e.stop, type: 'PUT').success =>
       @updateActivities()
 
-  render: ->
+  render: =>
     list = @state.collection.map (amodel) ->
       # return just the hash of attributes for now
       amodel.attributes

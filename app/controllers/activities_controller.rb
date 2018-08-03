@@ -36,6 +36,10 @@ class ActivitiesController < ApplicationController
     render json: @activity
   end
 
+  def update
+    binding.pry!
+  end
+
   def show
     activity = Activity.for_user(current_user).find params[:id]
 

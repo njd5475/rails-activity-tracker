@@ -4,8 +4,7 @@ class Activity extends React.Component
 
   constructor: (props) ->
     super props
-    @state =
-      count: 0
+    @state = count: 0
 
   componentDidMount: =>
     @setState interval: setInterval @updateCount, 1000
@@ -43,7 +42,7 @@ class Activity extends React.Component
       <div className="col-xs-2 col-md-2">
         <ActivityTime time={this.props.start} />
         &nbsp;-&nbsp;
-        <ActivityTime time={this.props.end} />
+        <ActivityTime time={this.props.end} activityUpdateUrl={this.props.updateUrl} />
       </div>
       <div className="col-xs-4 col-md-4">
         {this.props.description}{active}

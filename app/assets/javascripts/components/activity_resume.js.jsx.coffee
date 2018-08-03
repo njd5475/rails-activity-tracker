@@ -1,7 +1,7 @@
 #= require ../models
 
 class ActivityResume extends React.Component
-  render: ->
+  render: =>
     `<button>Resume</button>`
 
 @ActivityResume = ActivityResume
