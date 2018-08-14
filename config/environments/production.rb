@@ -84,6 +84,6 @@ Rails.application.configure do
     domain:               ENV['SMTP_MAIL_DOMAIN'],
     user_name:            ENV['SMTP_MAIL_USER'],
     password:             ENV['SMTP_MAIL_PASS'],
-    authentication:       'plain'
+    authentication:       'plain',
     enable_starttls_auto: true }
 end
