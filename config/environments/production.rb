@@ -78,12 +78,18 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
 	config.action_mailer.delivery_method = :smtp
+
   config.action_mailer.smtp_settings = {
     address:              ENV['SMTP_MAIL_ADDR'],
     port:                 ENV['SMTP_MAIL_PORT'],
     domain:               ENV['SMTP_MAIL_DOMAIN'],
     user_name:            ENV['SMTP_MAIL_USER'],
     password:             ENV['SMTP_MAIL_PASS'],
-    authentication:       'plain',
-    enable_starttls_auto: true }
+    authentication:       :login,
+    ssl:                  true,
+    openssl_verify_mode:  'none'
+  }
+
+  Rails.application.routes.default_url_options[:host] = ENV['SERVER_HOST_URL']
+
 end
