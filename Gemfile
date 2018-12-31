@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # add additional items here at the top.
-ruby "2.2.7"
+ruby "2.5.1"
 gem 'bundler', '>= 1.8.4'
 
 gem 'devise'
@@ -24,7 +24,7 @@ gem 'haml-rails'
 gem 'react-rails', '= 2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5.2'
+gem 'rails', '4.2.11'
 # Use postgres as the database for Active Record
 gem 'pg', '~> 0.20'
 # Use SCSS for stylesheets
