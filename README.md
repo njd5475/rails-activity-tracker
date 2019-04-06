@@ -12,6 +12,11 @@ Features List
 * Group activities by time
 * Retroactively change past activities
 
+Wip
+===
+
+- [ ] Daily Goals
+
 Live Example
 ===
 
