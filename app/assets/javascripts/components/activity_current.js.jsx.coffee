@@ -26,25 +26,23 @@ class ActivityCurrent extends React.Component
     endTime = if @props.activity.end then moment(@props.activity.end) else null
     duration = countdown(moment(@props.activity.start), endTime).toString()
 
-    `<div className="row">
-      <div className="container">
-        <div className="row">
-          <h1>Current Activity</h1>
-        </div>
-        <div className="row">
-          <div className="container">
-            <div className="row">
-              <div className="pull-right">
-                <button className="btn"
-                  onClick={this.onStopCurrent}>
-                  Stop Tracking
-                </button>
-              </div>
-              <h4>{this.props.activity.description}</h4>
+    `<div className="container-fluid">
+      <div className="row">
+        <h1>Current Activity</h1>
+      </div>
+      <div className="row">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="pull-right">
+              <button className="btn"
+                onClick={this.onStopCurrent}>
+                Stop Tracking
+              </button>
             </div>
-            <div className="row">
-              <h6>{duration}</h6>
-            </div>
+            <h4>{this.props.activity.description}</h4>
+          </div>
+          <div className="row">
+            <h6>{duration}</h6>
           </div>
         </div>
       </div>

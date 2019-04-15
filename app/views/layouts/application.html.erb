@@ -8,6 +8,7 @@
 </head>
 <body>
 <%= react_component 'MainNav', (@user_info or {}) %>
+<%= react_component 'Sidenav', (@user_info or {}) %>
 <%= yield %>
 
 </body>

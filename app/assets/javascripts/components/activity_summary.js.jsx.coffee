@@ -27,8 +27,10 @@ class ActivitySummary extends React.Component
   render: =>
 
     `<div className="row">
-      <h2>Summary</h2>
-      {this.state.summary}
+      <div className="col-md-12">
+        <h3>Summary</h3>
+        {this.state.summary}
+      </div>
     </div>`
 
 

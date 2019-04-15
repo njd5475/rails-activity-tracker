@@ -5,8 +5,12 @@ class ActivityHistory extends React.Component
     super props
     
   render: =>
-    `<div>
-      <ActivityList title="History" updater={this.props.updater} activities={this.props.activities}/>
+    `<div className="container-fluid">
+      <div className="row">
+        <div className="col-md-12">
+          <ActivityList title="History" updater={this.props.updater} activities={this.props.activities}/>
+        </div>
+      </div>
       <ActivitySummary activities={this.props.activities} />
     </div>`
 

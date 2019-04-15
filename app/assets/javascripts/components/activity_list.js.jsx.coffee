@@ -15,17 +15,11 @@ class ActivityList extends React.Component
     list = _.map activities, (activity) ->
       `<Activity key={activity.id} updater={updater} {...activity} />`
 
-    `<Row>
-      <div className="container">
-        <div className="row">
-          <h3>{title}</h3>
-        </div>
-        <div className="row">
-          <div className="container">
-            {list}
-          </div>
-        </div>
+    `<div className="row">
+      <div className="col-md-12">
+        <h3>{title}</h3>
+        {list}
       </div>
-    </Row>`
+    </div>`
 
 @ActivityList = ActivityList
