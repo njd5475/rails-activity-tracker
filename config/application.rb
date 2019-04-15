@@ -24,5 +24,7 @@ module Railstime
     config.active_record.raise_in_transactional_callbacks = true
 
     config.force_ssl = true if ENV['FORCE_SSL']
+
+    config.action_mailer.default_url_options = { host: 'localhost:3000' }
   end
 end

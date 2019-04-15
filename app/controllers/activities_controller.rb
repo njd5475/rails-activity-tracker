@@ -11,6 +11,7 @@ class ActivitiesController < ApplicationController
       h[:stop] = stop_activity_path(a) if a.active
       h
     end
+    @goals = Goal.for_user(current_user)
 
     respond_to do |format|
       format.html

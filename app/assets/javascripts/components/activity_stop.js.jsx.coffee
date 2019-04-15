@@ -25,9 +25,7 @@ class ActivityStop extends React.Component
     handleStop = @props.stop || this.handleStop
 
     `<button onClick={handleStop}>
-      <Transition in={"loader"} timeout={300}>
-        <div className="loader spin" />
-      </Transition>
+      <div className="loader spin" />
       {btnDisplay}
     </button>`
 

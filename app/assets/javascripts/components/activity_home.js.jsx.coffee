@@ -1,9 +1,16 @@
 #= require ../models
+#= require_tree ./ui/
 
 class ActivityHome extends React.Component
 
   constructor: (props) ->
-    @state = collection: new ActivityCollection(props.initialCollection)
+    @state = 
+      collection: new ActivityCollection(props.initialCollection)
+      goals: new GoalCollection(props.goals)
+
+    @state.goals.on 'sync', =>
+      @setState goals: @state.goals
+
     @state.collection.on 'sync', =>
       @setState collection: @state.collection
 
@@ -12,8 +19,14 @@ class ActivityHome extends React.Component
     if !@props.initialCollection?
       @updateActivities()
 
+    if !@props.goals?
+      @updateGoals()
+
   updateActivities: =>
     @state.collection.fetch()
+
+  updateGoals: =>
+    @state.goals.fetch()
 
   onStopCurrent: (e) =>
     ($.ajax url: e.stop, type: 'PUT').success =>
@@ -32,11 +45,16 @@ class ActivityHome extends React.Component
 
     updater = @updateActivities
 
-    `<div className='container'>
-      {current}
-      <ActivityNew collection={this.state.collection} />
-      <ActivityList sort_descending={true} updater={updater} activities={list}/>
-      <ActivityHistory updater={updater} activities={this.props.history} />
+    obj = tabs: [
+      {name: "Current", component: current}
+      {name: "New Activity", component: `<ActivityNew collection={this.state.collection} />`}
+      {name: "List", component: `<ActivityList sort_descending={true} updater={updater} activities={list}/>`}
+      {name: "History", component: `<ActivityHistory updater={updater} activities={this.props.history} />`}
+      {name: "Goals", component: `<ActivityDailyGoals list={this.state.goals}></ActivityDailyGoals>`}
+    ]
+
+    `<div className='container-fluid'>
+      <ActivityTabbed tabs={obj.tabs} />
     </div>`
 
 @ActivityHome = ActivityHome

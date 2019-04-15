@@ -8,11 +8,13 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
-  resources :activities do
+  resources :activities, except: [:new, :edit] do
     member do
       put 'stop'
     end
   end
+
+  resources :goals, except: [:new, :edit]
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
