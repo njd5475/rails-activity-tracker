@@ -10,6 +10,7 @@ class ActivityNew extends React.Component
     model = new ActivityModel description: @state.userInput
     model.save().success(=>
       @props.collection.fetch()
+      @props.changed() if @props.changed?
     ).fail(=>
       console.log(arguments)
     )

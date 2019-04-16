@@ -10,15 +10,19 @@ class ActivityHome extends React.Component
       goalsObj: new GoalCollection(props.goals)
       goals: props.goals
 
+    @state.current = @state.activityObj.getCurrent()
+
     @state.goalsObj.on 'sync change reset add remove', =>
       theGoals = @state.goalsObj.getAll()
-      console.log("Goals updated and got " + theGoals.length)
-      @setState goals: theGoals,
-        @tabs.updateMe
+      @setState goals: theGoals, @updateTabs
 
     @state.activityObj.on 'sync change reset add remove', =>
-      @setState activities: @state.activityObj.getAll(),
-        @tabs.updateMe
+      console.log(@state.activityObj.getCurrent())
+      @setState 
+        activities: @state.activityObj.getAll()
+        activityObj: @state.activityObj
+        current: @state.activityObj.getCurrent()
+        , @updateTabs
 
   componentDidMount: ->
     # prevent initial request for collection if already set
@@ -28,8 +32,12 @@ class ActivityHome extends React.Component
     if !@props.goals?
       @updateGoals()
 
+  updateTabs: =>
+    console.log("Updating tabs called")
+    @tabs.updateMe()
+
   updateActivities: =>
-    @state.activityObjs.fetch()
+    @state.activityObj.fetch()
 
   updateGoals: =>
     @state.goalsObj.fetch()
@@ -39,12 +47,14 @@ class ActivityHome extends React.Component
       @updateActivities()
 
   render: =>
-    list = @state.activityObj.getAll()
+    list = @state.activities
 
     current = null
-    if @state.activityObj.getCurrent()?
-      current = `<ActivityCurrent key={0} onStopCurrent={this.onStopCurrent} activity={this.state.activityObj.getCurrent().attributes} />`
+    if @state.current?
+      console.log("We have a current activity in state")
+      current = `<ActivityCurrent key={0} onStopCurrent={this.onStopCurrent} activity={this.state.current.attributes} />`
     else
+      console.log("There is no current activity")
       current = `<div key={0} className="row"><h1>No current activity</h1></div>`
 
     updater = @updateActivities
@@ -52,12 +62,12 @@ class ActivityHome extends React.Component
     tabs = []
     tabs.push name: "Current",      component: current
     tabs.push name: "New Activity", component: `<ActivityNew        key={1} collection={this.state.activityObj} />`
-    tabs.push name: "List",         component: `<ActivityList       key={2} sort_descending={true} updater={updater} activities={list}/>`
+    tabs.push name: "List",         component: `<ActivityList       key={2} sort_descending={true} updater={updater} activities={list} />`
     tabs.push name: "History",      component: `<ActivityHistory    key={3} updater={updater} activities={this.props.history} />`
     tabs.push name: "Goals",        component: `<ActivityDailyGoals key={4} list={this.state.goals} collection={this.state.goalsObj} />`
 
     `<div className='container-fluid'>
-      <ActivityTabbed ref={instance => this.tabs = instance} tabs={tabs} updates={this.state.updateTabs}/>
+      <ActivityTabbed ref={instance => this.tabs = instance} tabs={tabs} />
     </div>`
 
 @ActivityHome = ActivityHome

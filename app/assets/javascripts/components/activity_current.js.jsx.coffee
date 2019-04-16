@@ -26,6 +26,9 @@ class ActivityCurrent extends React.Component
     endTime = if @props.activity.end then moment(@props.activity.end) else null
     duration = countdown(moment(@props.activity.start), endTime).toString()
 
+    classes = ['btn']
+    disabled = @props.endTime?
+
     `<div className="container-fluid">
       <div className="row">
         <h1>Current Activity</h1>
@@ -34,8 +37,9 @@ class ActivityCurrent extends React.Component
         <div className="container-fluid">
           <div className="row">
             <div className="pull-right">
-              <button className="btn"
-                onClick={this.onStopCurrent}>
+              <button className={classes.join(" ")}
+                onClick={this.onStopCurrent}
+                disabled={disabled}>
                 Stop Tracking
               </button>
             </div>

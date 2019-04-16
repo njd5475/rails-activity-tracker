@@ -1,9 +1,8 @@
 
 class ActivityTabbed extends React.Component
 	constructor: (props) ->
-		@tabs = props.tabs
 		@state = 
-			current: @tabs[0]
+			current: props.tabs[0]
 	
 	updateMe: =>
 		@setState update: @state.update + 1
@@ -11,7 +10,7 @@ class ActivityTabbed extends React.Component
 	render: =>
 		current = @state.current
 		updates = @state.update
-		links = @tabs.map (t, i) =>
+		links = @props.tabs.map (t, i) =>
 			active = t.name == current.name
 			name = t.name.replace(/\s+/, '-')
 			data = 
@@ -46,7 +45,7 @@ class ActivityTabbed extends React.Component
 				{el}
 			</li>`
 
-		components = @tabs.map (t, i) ->
+		components = @props.tabs.map (t, i) ->
 			name = t.name.replace(/\s+/, '-')
 			accessibility = 
 				'aria-labelledby': "#{name}-tab"

@@ -5,7 +5,6 @@ class ActivityStop extends React.Component
   constructor: (props) ->
     super props
     @state = displayState: 'words'
-    @rotate()
 
   rotate: =>
     if @state.displayState == 'spinner'
@@ -22,7 +21,7 @@ class ActivityStop extends React.Component
     btnDisplay = "St" if @state.displayState == 'spinner'
     btnDisplay = "Stop" if @state.displayState == 'words'
 
-    handleStop = @props.stop || this.handleStop
+    handleStop = @props.stop or this.handleStop
 
     `<button onClick={handleStop}>
       <div className="loader spin" />
