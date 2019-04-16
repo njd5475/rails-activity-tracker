@@ -4,10 +4,14 @@ class ActivityTabbed extends React.Component
 		@tabs = props.tabs
 		@state = 
 			current: @tabs[0]
+	
+	updateMe: =>
+		@setState update: @state.update + 1
 
 	render: =>
 		current = @state.current
-		links = @tabs.map (t) =>
+		updates = @state.update
+		links = @tabs.map (t, i) =>
 			active = t.name == current.name
 			name = t.name.replace(/\s+/, '-')
 			data = 
@@ -19,9 +23,8 @@ class ActivityTabbed extends React.Component
 			classes = ['nav-link']
 			classes.push('active') if active
 			navClick = (e) =>
-				@setState(
-					current: t
-				)
+				@setState current: t
+
 				e.preventDefault()
 
 				false
@@ -39,11 +42,11 @@ class ActivityTabbed extends React.Component
 			liClasses = []
 			liClasses.push('active') if active
 
-			`<li key={name} className={liClasses}>
+			`<li key={i} className={liClasses}>
 				{el}
 			</li>`
 
-		components = @tabs.map (t) ->
+		components = @tabs.map (t, i) ->
 			name = t.name.replace(/\s+/, '-')
 			accessibility = 
 				'aria-labelledby': "#{name}-tab"
@@ -54,7 +57,7 @@ class ActivityTabbed extends React.Component
 				id={name} 
 				role="tabpanel" 
 				{...accessibility}
-				key={name} >
+				key={i} >
 				{t.component}
 			</div>`
 

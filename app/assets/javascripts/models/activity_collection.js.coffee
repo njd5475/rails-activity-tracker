@@ -1,6 +1,7 @@
+#= require ./base_collection
 #= require ./activity_model
 
-class ActivityCollection extends Backbone.Collection
+class ActivityCollection extends BaseCollection
   url: '/activities'
   model: ActivityModel
 

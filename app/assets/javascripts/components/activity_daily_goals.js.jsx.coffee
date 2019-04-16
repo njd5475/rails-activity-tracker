@@ -1,25 +1,37 @@
 
 class ActivityDailyGoals extends React.Component
-    state:
-        userInput: ''
-        working: false
+
+    constructor: (props) ->
+        @state =
+            userInput: ''
+            working: false
+            goals: props.list
 
     handleChange: (e) =>
         @setState userInput: e.target.value
+
+    changed: =>
+        @setState goals: @props.collection.getAll()
 
     newGoal: (e) =>
         e.preventDefault()
 
         @setState working: true
         goal = new GoalModel name: @state.userInput
-        goal.save().done =>
+        goal.save().success =>
+            @props.collection.fetch().success =>
+                @setState goals: @props.collection.getAll()
             @setState working: false
 
     render: =>
         disabled = @state.working
 
-        goals = @props.list.map (goal, i) =>
-            `<Goal key={i} {...goal.attributes} />`
+        theList = @props.collection
+        
+        changedListener = @changed
+        goals = @state.goals.map (goal, i) =>
+            model = theList.find (g) -> g.id == goal.id
+            `<Goal key={i} {...goal} list={theList} model={model} changed={changedListener} />`
 
         `<div className="container-fluid">
             <div className="row">

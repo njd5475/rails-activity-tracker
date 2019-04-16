@@ -1,10 +1,11 @@
+#= require ./base_collection
 #= require ./goal_model
 
-class GoalCollection extends Backbone.Collection
+class GoalCollection extends BaseCollection
   url: '/goals'
   model: GoalModel
 
-  initialize: ->
+  initialize: -> 
 
 
 @GoalCollection = GoalCollection
