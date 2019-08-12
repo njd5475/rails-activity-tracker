@@ -92,4 +92,7 @@ Rails.application.configure do
 
   Rails.application.routes.default_url_options[:host] = ENV['SERVER_HOST_URL']
 
+  # TODO: remove me, trying to get heroku to show logs
+  config.cache_classes = false                                                                                                                                                 
+  config.action_controller.perform_caching = false
 end
