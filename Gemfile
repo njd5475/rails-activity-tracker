@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 ruby "2.5.1"
 gem 'bundler', '>= 1.8.4'
 
+gem 'exception_notification'
+
 gem 'devise'
 gem 'omniauth-google-oauth2'
 # security patch https://nvd.nist.gov/vuln/detail/CVE-2015-9284
