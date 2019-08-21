@@ -1,5 +1,4 @@
 #= require ../models
-#= require react-transition-group/src/index
 
 class ActivityStop extends React.Component
   constructor: (props) ->
