@@ -9,7 +9,7 @@ gem 'exception_notification'
 gem 'devise'
 gem 'omniauth-google-oauth2'
 # security patch https://nvd.nist.gov/vuln/detail/CVE-2015-9284
-#gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-rails_csrf_protection'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap', '3.3.7'
