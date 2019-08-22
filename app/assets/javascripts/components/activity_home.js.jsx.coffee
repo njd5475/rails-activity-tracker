@@ -61,10 +61,11 @@ class ActivityHome extends React.Component
 
     tabs = []
     tabs.push name: "Current",      component: current
-    tabs.push name: "New Activity", component: `<ActivityNew        key={1} collection={this.state.activityObj} />`
-    tabs.push name: "List",         component: `<ActivityList       key={2} sort_descending={true} updater={updater} activities={list} />`
-    tabs.push name: "History",      component: `<ActivityHistory    key={3} updater={updater} activities={this.props.history} />`
-    tabs.push name: "Goals",        component: `<ActivityDailyGoals key={4} list={this.state.goals} collection={this.state.goalsObj} />`
+    tabs.push name: "Summary",      component: `<ActivitySummary    key={1} activities={this.props.history} />`
+    tabs.push name: "New Activity", component: `<ActivityNew        key={2} collection={this.state.activityObj} />`
+    tabs.push name: "List",         component: `<ActivityList       key={3} sort_descending={true} updater={updater} activities={list} />`
+    tabs.push name: "History",      component: `<ActivityHistory    key={4} updater={updater} activities={this.props.history} />`
+    tabs.push name: "Goals",        component: `<ActivityDailyGoals key={5} list={this.state.goals} collection={this.state.goalsObj} />`
 
     `<div className='container-fluid'>
       <ActivityTabbed ref={instance => this.tabs = instance} tabs={tabs} />

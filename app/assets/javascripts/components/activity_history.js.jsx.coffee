@@ -11,7 +11,6 @@ class ActivityHistory extends React.Component
           <ActivityList title="History" updater={this.props.updater} activities={this.props.activities}/>
         </div>
       </div>
-      <ActivitySummary activities={this.props.activities} />
     </div>`
 
 @ActivityHistory = ActivityHistory

@@ -21,18 +21,23 @@ class ActivityNew extends React.Component
     if @props.collection.getCurrent()?
       trackingText = "Switch"
 
-    `<form className="form-inline">
-      <div className="form-group">
-        <input
-          type="text"
-          className="form-control"
-          value={this.state.userInput}
-          onChange={this.handleChange} />
-        <button
-          type="submit"
-          className="btn btn-default pull-right"
-          onClick={this.startTracking}>{trackingText}</button>
+    `<div className="row">
+      <div className="col-md-12">
+        <h3>New Activity</h3>
+        <form className="form-inline">
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control"
+              value={this.state.userInput}
+              onChange={this.handleChange} />
+            <button
+              type="submit"
+              className="btn btn-default pull-right"
+              onClick={this.startTracking}>{trackingText}</button>
+          </div>
+        </form>
       </div>
-    </form>`
+    </div>`
 
 @ActivityNew = ActivityNew

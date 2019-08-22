@@ -36,25 +36,34 @@ class ActivityDailyGoals extends React.Component
         `<div className="container-fluid">
             <div className="row">
                 <div className="col-md-9">
-                    Activity Daily Goals
-                    <form className="form-inline" action="/goals" method="POST">
-                        <div className="form-group">
-                            <div className="input-group">
-                                <input 
-                                    className="form-control" 
-                                    type="text" 
-                                    id="name" 
-                                    placeholder="Goal Name"
-                                    value={this.state.userInput}
-                                    onChange={this.handleChange} />
-                            </div>
+                    <h2>Activity Daily Goals</h2>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <form className="form-inline" action="/goals" method="POST">
+                                <div className="form-group">
+                                    <div className="input-group">
+                                        <input 
+                                            className="form-control" 
+                                            type="text" 
+                                            id="name" 
+                                            placeholder="Goal Name"
+                                            value={this.state.userInput}
+                                            onChange={this.handleChange} />
+                                    </div>
+                                </div>
+                                <button 
+                                    className="btn btn-primary" 
+                                    type="submit"
+                                    disabled={disabled}
+                                    onClick={this.newGoal}>Add</button>  
+                            </form>
                         </div>
-                        <button 
-                            className="btn btn-primary" 
-                            type="submit"
-                            disabled={disabled}
-                            onClick={this.newGoal}>Add</button>  
-                    </form>
+                    </div>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-md-12">
+                    <h3>Goals List</h3>
                 </div>
             </div>
             <div className="row">

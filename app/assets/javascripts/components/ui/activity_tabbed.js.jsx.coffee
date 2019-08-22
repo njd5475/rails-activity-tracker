@@ -7,6 +7,24 @@ class ActivityTabbed extends React.Component
 	updateMe: =>
 		@setState update: @state.update + 1
 
+	componentDidMount: =>
+		@switchTabs(location.hash)
+
+		window.addEventListener("hashchange", @switchTabsHandler)
+
+	switchTabsHandler: (event) =>
+		@switchTabs(location.hash)
+
+	switchTabs: (hash) =>
+		if hash
+			tabLink = document.querySelector('a[href="' + hash + '"]')
+			if !tabLink
+				return false
+
+			tabLink.click()
+			
+			setTimeout((=> window.scrollTo(0, 0)), 1) if hash
+
 	render: =>
 		current = @state.current
 		updates = @state.update
@@ -18,12 +36,13 @@ class ActivityTabbed extends React.Component
 			aria = 
 				'aria-controls': "#{name}-tab"
 				'aria-selected': 'true'
-			hrefStr = "##{name}"
+			hrefStr = "##{name}".toLowerCase()
 			classes = ['nav-link']
 			classes.push('active') if active
 			navClick = (e) =>
 				@setState current: t
 
+				location.hash = "#{hrefStr}"
 				e.preventDefault()
 
 				false
