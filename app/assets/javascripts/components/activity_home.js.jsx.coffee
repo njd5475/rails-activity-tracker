@@ -60,15 +60,27 @@ class ActivityHome extends React.Component
     updater = @updateActivities
 
     tabs = []
-    tabs.push name: "Current",      component: current
-    tabs.push name: "Summary",      component: `<ActivitySummary    key={1} activities={this.props.history} />`
-    tabs.push name: "New Activity", component: `<ActivityNew        key={2} collection={this.state.activityObj} />`
-    tabs.push name: "List",         component: `<ActivityList       key={3} sort_descending={true} updater={updater} activities={list} />`
-    tabs.push name: "History",      component: `<ActivityHistory    key={4} updater={updater} activities={this.props.history} />`
-    tabs.push name: "Goals",        component: `<ActivityDailyGoals key={5} list={this.state.goals} collection={this.state.goalsObj} />`
+    tabs.push name: "Todays List",  component: `<ActivityList       key={tabs.length} sort_descending={true} updater={updater} activities={list} />`
+    tabs.push name: "Summary",      component: `<ActivitySummary    key={tabs.length} activities={this.props.history} />`
+    tabs.push name: "History",      component: `<ActivityHistory    key={tabs.length} updater={updater} activities={this.props.history} />`
+    tabs.push name: "Goals",        component: `<ActivityDailyGoals key={tabs.length} list={this.state.goals} collection={this.state.goalsObj} />`
 
     `<div className='container-fluid'>
-      <ActivityTabbed ref={instance => this.tabs = instance} tabs={tabs} />
+      <div className='row'>
+        <div className='col-md-6'>
+          {current}
+        </div>
+        <div className='col-md-3'>
+          <div className="well">
+            <ActivityNew  collection={this.state.activityObj} />
+          </div>
+        </div>
+      </div>
+      <div className="row">
+        <div className='col-md-12'>
+          <ActivityTabbed ref={instance => this.tabs = instance} tabs={tabs} />
+        </div>
+      </div>
     </div>`
 
 @ActivityHome = ActivityHome

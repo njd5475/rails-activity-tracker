@@ -17,13 +17,15 @@ class ActivityNew extends React.Component
     return false #for form submission
 
   render: =>
+    newText = 'New'
     trackingText = "Start Tracking"
     if @props.collection.getCurrent()?
       trackingText = "Switch"
+      newText = 'Switch'
 
     `<div className="row">
       <div className="col-md-12">
-        <h3>New Activity</h3>
+        <h3>{newText} Activity</h3>
         <form className="form-inline">
           <div className="form-group">
             <input
