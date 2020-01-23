@@ -1,4 +1,5 @@
 #= require countdownjs
+#= require moment
 
 class Activity extends React.Component
 
@@ -38,17 +39,23 @@ class Activity extends React.Component
     else
       resume = `<ActivityResume />`
 
+    startTime = moment(this.props.start).format('L')
+    ago = moment(this.props.start).fromNow()
+
     `<div className="row">
       <div className="col-xs-2 col-md-2">
         <ActivityTime time={this.props.start} />
         &nbsp;-&nbsp;
         <ActivityTime time={this.props.end} activityUpdateUrl={this.props.updateUrl} />
       </div>
+      <div className="col-xs-3 col-md-3">
+        {startTime} <em>({ago})</em>
+      </div>
       <div className="col-xs-4 col-md-4">
         {this.props.description}{active}
         {stop}
       </div>
-      <div className="col-xs-6 col-md-6">
+      <div className="col-xs-2 col-md-2">
         {duration}
       </div>
     </div>`

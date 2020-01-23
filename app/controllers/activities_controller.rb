@@ -6,7 +6,7 @@ class ActivitiesController < ApplicationController
       h[:stop] = stop_activity_path(a)
       h
     end
-    @history = Activity.for_user(current_user).old.collect do |a|
+    @history = Activity.for_user(current_user).old.order(created_at: :desc).collect do |a|
       h = a.as_json
       h[:stop] = stop_activity_path(a) if a.active
       h
