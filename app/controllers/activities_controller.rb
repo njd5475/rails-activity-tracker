@@ -38,7 +38,28 @@ class ActivitiesController < ApplicationController
   end
 
   def update
-    binding.pry!
+    @activity = Activity.for_user(current_user).where(id: params.id) or not_found
+    permitted = params.permit(:description, :start, :end, :goal_id)
+    
+    if permitted.hasKey?(:description) then
+      @activity.description = permitted[:description]
+    end
+
+    if permitted.hasKey?(:start) then
+      @activity.start = permitted[:start]
+    end
+
+    if permitted.hasKey?(:end) then
+      @activity.end = permitted[:end]
+    end
+
+    if permitted.hasKey?(:goal_id) then
+      @activity.goal = Goal.for_user(current_user).where(id: params.goal_id)
+    end
+
+    @activity.save!
+
+    render json: @activity
   end
 
   def show

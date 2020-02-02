@@ -14,13 +14,18 @@ class ActivitySummary extends React.Component
       last = 0
       last = m[a.description] if m[a.description]?
       m[a.description] = last + moment(a.end).diff(moment(a.start))
+      m.time_diff = moment(a.end).diff(moment(a.start))
       return m
 
-    m = _.reduce activities, r, {}
+    agg = _.reduce activities, r, {}
+
+    m = Object.entries(agg).sort (l, r) ->
+      return r[1] - l[1]
 
     i = 0
-    m = _.map m, (v, k) ->
-      `<ActivityTotal key={++i} title={k} time={v} />`
+
+    m = _.map m, ([v, k]) ->
+      `<ActivityTotal key={++i} title={v} time={k} />`
 
     return m
 

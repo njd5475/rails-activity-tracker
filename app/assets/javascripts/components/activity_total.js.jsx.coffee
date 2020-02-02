@@ -5,7 +5,7 @@ class ActivityTotal extends React.Component
     elapsed = moment.duration(@props.time).humanize()
 
     `<div>
-      {this.props.title} - {elapsed}
+       {elapsed} - {this.props.title}
     </div>`
 
 @ActivityTotal = ActivityTotal
