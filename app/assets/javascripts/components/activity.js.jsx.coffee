@@ -5,20 +5,9 @@ class Activity extends React.Component
 
   constructor: (props) ->
     super props
-    @state = count: 0
-
-  componentDidMount: =>
-    @setState interval: setInterval @updateCount, 1000
-
-  componentWillUnmount: =>
-    clearInterval(@state.interval)
-
-  updateCount: =>
-    @setState count: @state.count+1
-
-  handleStop: =>
-    ($.ajax url: @props.stop, type: 'PUT').success =>
-      @props.updater()
+    @state = 
+      count: 0
+      goals: []
 
   render: =>
     countdown.setLabels(
@@ -48,7 +37,7 @@ class Activity extends React.Component
         &nbsp;-&nbsp;
         <ActivityTime time={this.props.end} activityUpdateUrl={this.props.updateUrl} />
       </div>
-      <div className="col-xs-3 col-md-3">
+      <div className="col-xs-2 col-md-2">
         {startTime} <em>({ago})</em>
       </div>
       <div className="col-xs-4 col-md-4">
@@ -58,6 +47,39 @@ class Activity extends React.Component
       <div className="col-xs-2 col-md-2">
         {duration}
       </div>
+      <div className="col-xs-2 col-md-2">
+        <GoalSelector goals={this.state.goals} listener={this.goalChanged} {...this.state.goal}/>
+      </div>
     </div>`
+
+  componentDidMount: =>
+    @setState interval: setInterval @updateCount, 1000
+
+    @retrieveGoals()
+    @retrieveGoal()
+
+  componentWillUnmount: =>
+    clearInterval(@state.interval)
+
+  updateCount: =>
+    @setState count: @state.count+1
+
+  handleStop: =>
+    ($.ajax url: @props.stop, type: 'PUT').success =>
+      @props.updater()
+
+  goalChanged: (goal) =>
+    ($.ajax url: "#{goal.activities_url}/#{this.props.id}", type: 'PUT').success =>
+      @setState goal: goal
+
+  retrieveGoals: =>
+    if @props.goals_url
+      ($.ajax url: @props.goals_url, type: 'GET',  dataType: 'json').success (results) =>
+        @setState goals: results
+
+  retrieveGoal: =>
+    if @props.goal_url
+      ($.ajax url: @props.goal_url, type: 'GET', dataType: 'json').success (goal) =>
+        @setState goal: goal
 
 @Activity = Activity

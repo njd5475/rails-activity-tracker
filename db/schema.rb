@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_25_033943) do
+ActiveRecord::Schema.define(version: 2020_02_02_180239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,12 +22,13 @@ ActiveRecord::Schema.define(version: 2019_08_25_033943) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.bigint "goal_id"
+    t.index ["goal_id"], name: "index_activities_on_goal_id"
     t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
   create_table "goals", id: :serial, force: :cascade do |t|
     t.integer "user_id"
-    t.integer "activities_id"
     t.string "name"
     t.date "target_date"
     t.datetime "created_at", null: false
@@ -35,7 +36,6 @@ ActiveRecord::Schema.define(version: 2019_08_25_033943) do
     t.string "target_value"
     t.string "default_value"
     t.string "current_value"
-    t.index ["activities_id"], name: "index_goals_on_activities_id"
     t.index ["user_id"], name: "index_goals_on_user_id"
   end
 

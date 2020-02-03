@@ -1,7 +1,11 @@
 class GoalsController < ApplicationController
 
   def index
-    @goals = Goal.for_user(current_user)
+    @goals = Goal.for_user(current_user).collect do |goal|
+      jsonGoal = goal.as_json
+      jsonGoal[:activities_url] = goal_activities_path(goal)
+      jsonGoal
+    end
 
     respond_to do |format|
       format.html
@@ -18,11 +22,13 @@ class GoalsController < ApplicationController
   end
 
   def show
-    
+    @goal = Goal.for_user(current_user).find params[:id]
+
+    render json: @goal
   end
 
   def update
-    @goal = Goal.for_user(current_user).where(id: params.id) or not_found
+    @goal = Goal.for_user(current_user).where(id: params[:id]) or not_found
     permitted = params.permit(:name, :target_date, :target_value, :current_value)
 
     if permitted.hasKey?(:name) then

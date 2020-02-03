@@ -1,5 +1,6 @@
 class Activity < ActiveRecord::Base
   belongs_to :user
+  belongs_to :goal
 
   def self.for_user(user)
     where(user: user)
@@ -21,4 +22,5 @@ class Activity < ActiveRecord::Base
   def active
     return self.end == nil
   end
+
 end

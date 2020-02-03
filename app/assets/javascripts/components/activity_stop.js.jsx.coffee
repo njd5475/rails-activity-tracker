@@ -23,7 +23,6 @@ class ActivityStop extends React.Component
     handleStop = @props.stop or this.handleStop
 
     `<button onClick={handleStop}>
-      <div className="loader spin" />
       {btnDisplay}
     </button>`
 

@@ -16,6 +16,8 @@ class Goal extends React.Component
       <div className="panel-body">
         <label>Created:</label>
         <div>{createdDate}</div>
+        
+        <div><label>Activities:&nbsp;&nbsp;</label>{this.props.activity_count}</div>
         <button className="btn btn-primary" onClick={this.remove}>Remove</button>
       </div>
     </div>`

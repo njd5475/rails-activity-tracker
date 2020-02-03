@@ -14,7 +14,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :goals, except: [:new, :edit]
+  resources :goals, except: [:new, :edit] do
+    resources :activities, except: [:new, :edit]
+  end
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
