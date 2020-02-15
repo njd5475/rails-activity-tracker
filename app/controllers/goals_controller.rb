@@ -28,22 +28,22 @@ class GoalsController < ApplicationController
   end
 
   def update
-    @goal = Goal.for_user(current_user).where(id: params[:id]) or not_found
+    @goal = Goal.for_user(current_user).find(params[:id]) or not_found
     permitted = params.permit(:name, :target_date, :target_value, :current_value)
 
-    if permitted.hasKey?(:name) then
+    if permitted.has_key?(:name) then
       @goal.name = permitted[:name]
     end
     
-    if permitted.hasKey?(:target_date) then
+    if permitted.has_key?(:target_date) then
       @goal.target_date = permitted[:target_date]
     end
     
-    if permitted.hasKey?(:target_value) then
+    if permitted.has_key?(:target_value) then
       @goal.target_value = permitted[:target_value]
     end
     
-    if permitted.hasKey?(:current_value) then
+    if permitted.has_key?(:current_value) then
       @goal.current_value = permitted[:current_value]
     end
     

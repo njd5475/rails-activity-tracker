@@ -12,7 +12,7 @@ class ActivitiesController < ApplicationController
       h[:activity_count] = goal.activities.count
       h
     end
-
+    
     respond_to do |format|
       format.html
       format.json { render json: @todaysActivities}
