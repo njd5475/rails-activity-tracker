@@ -6,8 +6,8 @@
 #
 default: &default
   adapter: postgresql
-  username: railstime
-  password: apassword
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PWD'] %>
   pool: 5
   timeout: 5000
 
@@ -31,4 +31,4 @@ production:
   username: <%= ENV['DATABASE_USER'] %>
   password: <%= ENV['DATABASE_PWD'] %>
   database: railstime_prod
-  url: postgres://olnmbtpvhgcvsk:25a7fec2d392ce3bd66f9baade24e5d14eaef873bf5a84d9178f8de929bf3afc@ec2-54-163-245-150.compute-1.amazonaws.com:5432/d7k3n4anil2qr7
+  url: <%= ENV['DATABASE_URL'] %>
