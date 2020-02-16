@@ -1,6 +1,6 @@
 class Activity < ActiveRecord::Base
   belongs_to :user
-  belongs_to :goal
+  belongs_to :goal, optional: true
 
   def self.for_user(user)
     where(user: user)
