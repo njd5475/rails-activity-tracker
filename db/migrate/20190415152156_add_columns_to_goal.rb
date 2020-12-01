@@ -1,4 +1,4 @@
-class AddColumnsToGoal < ActiveRecord::Migration
+class AddColumnsToGoal < ActiveRecord::Migration[5.1]
   def change
     add_column :goals, :target_value, :string
     add_column :goals, :default_value, :string

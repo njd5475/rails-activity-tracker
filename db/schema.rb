@@ -15,20 +15,20 @@ ActiveRecord::Schema.define(version: 2020_02_02_180239) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "activities", id: :serial, force: :cascade do |t|
+  create_table "activities", force: :cascade do |t|
     t.string "description"
     t.datetime "start"
     t.datetime "end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.bigint "goal_id"
     t.index ["goal_id"], name: "index_activities_on_goal_id"
     t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
-  create_table "goals", id: :serial, force: :cascade do |t|
-    t.integer "user_id"
+  create_table "goals", force: :cascade do |t|
+    t.bigint "user_id"
     t.string "name"
     t.date "target_date"
     t.datetime "created_at", null: false
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2020_02_02_180239) do
     t.index ["user_id"], name: "index_goals_on_user_id"
   end
 
-  create_table "users", id: :serial, force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
