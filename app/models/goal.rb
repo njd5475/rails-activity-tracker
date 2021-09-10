@@ -14,4 +14,13 @@ class Goal < ActiveRecord::Base
     created = Activity.arel_table[:created_at]
     where(created.lt(Time.now.beginning_of_day))
   end
+
+  def duration
+    self.activities.joins(:goal).select(Goal.arel_table['name']).select("(\"activities\".\"end\" - \"activities\".\"start\") as duration").sum(&:duration)
+  end
+
+  def self.invalid_activities
+    self.joins(:activities).where(Activity.arel_table['end'].lt(Activity.arel_table['start']))
+  end
+
 end

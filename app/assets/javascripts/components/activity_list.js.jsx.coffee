@@ -12,8 +12,10 @@ class ActivityList extends React.Component
       activities = _.sortBy activities, (a) ->
         return moment(a.end || a.start).valueOf() * -1
 
+    startTracking = @props.startTracking
+
     list = _.map activities, (activity) ->
-      `<Activity table={true} key={activity.id} updater={updater} {...activity} />`
+      `<Activity startTracking={startTracking} table={true} key={activity.id} updater={updater} {...activity} />`
 
     `<div className="container">
       <div className="row">

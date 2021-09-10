@@ -26,7 +26,7 @@ class Activity extends React.Component
       handler = this.handleStop
       stop = `<ActivityStop stop={handler} />`
     else
-      resume = `<ActivityResume />`
+      resume = `<ActivityResume resume={this.handleResume} />`
 
     isTable = @props.table or false
 
@@ -45,7 +45,7 @@ class Activity extends React.Component
           </td>
           <td>
             {this.props.description}{active}
-            {stop}
+            {stop}{resume}
           </td>
           <td>
             {duration}
@@ -87,6 +87,9 @@ class Activity extends React.Component
 
   updateCount: =>
     @setState count: @state.count+1
+
+  handleResume: =>
+    @props.startTracking @props.description
 
   handleStop: =>
     ($.ajax url: @props.stop, type: 'PUT').success =>

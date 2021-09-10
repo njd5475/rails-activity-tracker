@@ -4,6 +4,7 @@ class GoalsController < ApplicationController
     @goals = Goal.for_user(current_user).collect do |goal|
       jsonGoal = goal.as_json
       jsonGoal[:activities_url] = goal_activities_path(goal)
+      jsonGoal[:duration] = goal.duration
       jsonGoal
     end
 

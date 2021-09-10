@@ -21,7 +21,7 @@ class Goal extends React.Component
     `<div className="panel panel-default">
       <div className="panel-heading">
         <h4 className="panel-title clearfix">
-          <span style={titleStyle}>{this.props.name}</span>
+          <span style={titleStyle}>{this.props.name} <em>({moment.duration({seconds: this.props.duration}).humanize()})</em></span>
           <div className="btn-group pull-right">
           <a className="btn btn-default btn-sm" onClick={this.remove} aria-label="Delete">
             <span className="glyphicon glyphicon-remove-sign" aria-hidden="true" />

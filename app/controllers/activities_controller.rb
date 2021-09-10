@@ -10,6 +10,7 @@ class ActivitiesController < ApplicationController
     @goals = Goal.for_user(current_user).order(created_at: :desc).collect do |goal|
       h = goal.as_json
       h[:activity_count] = goal.activities.count
+      h[:duration] = goal.duration
       h
     end
     

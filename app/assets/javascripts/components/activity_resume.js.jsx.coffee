@@ -2,6 +2,8 @@
 
 class ActivityResume extends React.Component
   render: =>
-    `<button>Resume</button>`
+    resume = @props.resume
+
+    `<button onClick={resume}>Resume</button>`
 
 @ActivityResume = ActivityResume

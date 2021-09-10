@@ -5,12 +5,22 @@ class ActivityNew extends React.Component
   handleChange: (e) =>
     @setState userInput: e.target.value
 
+  setTracking: (desc, callback) =>
+    @setState userInput: desc, () =>
+      @startNew @state.userInput
+      callback() if callback
+
   startTracking: (e) =>
     e.preventDefault()
-    model = new ActivityModel description: @state.userInput
+    @startNew @state.userInput
+    return false
+
+  startNew: (desc, callback) =>
+    model = new ActivityModel description: desc
     model.save().success(=>
       @props.collection.fetch()
       @props.changed() if @props.changed?
+      callback() if callback
     ).fail(=>
       console.log(arguments)
     )

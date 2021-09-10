@@ -24,6 +24,7 @@ class ActivityHome extends React.Component
         current: @state.activityObj.getCurrent()
         , @updateTabs
 
+
   componentDidMount: ->
     # prevent initial request for collection if already set
     if !@props.initialCollection?
@@ -38,6 +39,10 @@ class ActivityHome extends React.Component
 
   updateActivities: =>
     @state.activityObj.fetch()
+
+  startTracking: (desc) =>
+    @activityNew.setTracking desc, () =>
+      @updateActivities()
 
   updateGoals: =>
     @state.goalsObj.fetch()
@@ -58,12 +63,13 @@ class ActivityHome extends React.Component
       current = `<div key={0} className="row"><h1>No current activity</h1></div>`
 
     updater = @updateActivities
+    startTracking = @startTracking
 
     tabs = []
-    tabs.push name: "Todays List",  component: `<ActivityList       key={tabs.length} sort_descending={true} updater={updater} activities={list} />`
-    tabs.push name: "Summary",      component: `<ActivitySummary    key={tabs.length} activities={this.props.history} />`
-    tabs.push name: "History",      component: `<ActivityHistory    key={tabs.length} updater={updater} activities={this.props.history} />`
-    tabs.push name: "Goals",        component: `<ActivityDailyGoals key={tabs.length} list={this.state.goals} collection={this.state.goalsObj} />`
+    tabs.push name: "Todays List",  component: `<ActivityList       key={tabs.length} startTracking={startTracking} sort_descending={true} updater={updater} activities={list} />`
+    tabs.push name: "Summary",      component: `<ActivitySummary    key={tabs.length} startTracking={startTracking} activities={this.props.history} />`
+    tabs.push name: "History",      component: `<ActivityHistory    key={tabs.length} startTracking={startTracking} updater={updater} activities={this.props.history} />`
+    tabs.push name: "Goals",        component: `<ActivityDailyGoals key={tabs.length} startTracking={startTracking} list={this.state.goals} collection={this.state.goalsObj} />`
 
     `<div className='container-fluid'>
       <div className='row'>
@@ -72,7 +78,7 @@ class ActivityHome extends React.Component
         </div>
         <div className='col-md-3'>
           <div className="well">
-            <ActivityNew  collection={this.state.activityObj} />
+            <ActivityNew ref={ref => this.activityNew = ref} collection={this.state.activityObj} />
           </div>
         </div>
       </div>
