@@ -14,11 +14,11 @@
  *= require_self
  */
 
-$body-bg: rgb(58, 24, 24);
-$body-color: rgb(172, 37, 37);
+$body-bg: rgb(253, 253, 253);
+$body-color: rgb(105, 105, 105);
 
 $theme-colors: (
-  "primary": #24d900,
+  "primary": #333333,
   "danger": #ee36ff
 );
 
@@ -56,5 +56,5 @@ $theme-colors: (
 }
 
 body {
-    background-color: #529100
+    background-color: $body-bg
 }

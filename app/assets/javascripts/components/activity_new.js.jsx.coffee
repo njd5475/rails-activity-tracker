@@ -33,10 +33,12 @@ class ActivityNew extends React.Component
               className="form-control"
               value={this.state.userInput}
               onChange={this.handleChange} />
+              <div className="input-group-btn">
             <button
               type="submit"
               className="btn btn-default pull-right"
               onClick={this.startTracking}>{trackingText}</button>
+            </div>
           </div>
         </form>
       </div>

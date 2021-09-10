@@ -1,4 +1,5 @@
 class Activity < ActiveRecord::Base
+  validate :start_must_be_before_end_time
   belongs_to :user
   belongs_to :goal, optional: true
 
@@ -21,6 +22,11 @@ class Activity < ActiveRecord::Base
 
   def active
     return self.end == nil
+  end
+
+  def start_must_be_before_end_time
+    return if start.nil? or self.end.nil?
+    errors.add(:start, "must be before end time") unless start < self.end
   end
 
 end

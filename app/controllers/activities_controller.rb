@@ -24,6 +24,7 @@ class ActivitiesController < ApplicationController
     h[:stop] = stop_activity_path(a)
     h[:goals_url] = goals_path()
     h[:goal_url] = goal_path(a.goal) if a.goal
+    h[:activity_update_url] = activity_path(a)
     h
   end
 
@@ -46,19 +47,20 @@ class ActivitiesController < ApplicationController
   end
 
   def update
+
+    permitted = params.permit(:description, :start, :end, :goal_id, :id)
     @activity = Activity.for_user(current_user).find(params[:id]) or not_found
-    permitted = params.permit(:description, :start, :end, :goal_id)
     
     if permitted.has_key?(:description) then
       @activity.description = permitted[:description]
     end
 
     if permitted.has_key?(:start) then
-      @activity.start = permitted[:start]
+      @activity.start = Time.zone.parse permitted[:start]
     end
 
     if permitted.has_key?(:end) then
-      @activity.end = permitted[:end]
+      @activity.end = Time.zone.parse permitted[:end]
     end
 
     if permitted.has_key?(:goal_id) then

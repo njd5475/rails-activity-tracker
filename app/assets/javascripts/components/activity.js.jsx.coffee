@@ -28,29 +28,53 @@ class Activity extends React.Component
     else
       resume = `<ActivityResume />`
 
+    isTable = @props.table or false
+
     startTime = moment(this.props.start).format('L')
     ago = moment(this.props.start).fromNow()
 
-    `<div className="row">
-      <div className="col-xs-2 col-md-2">
-        <ActivityTime time={this.props.start} />
-        &nbsp;-&nbsp;
-        <ActivityTime time={this.props.end} activityUpdateUrl={this.props.updateUrl} />
-      </div>
-      <div className="col-xs-2 col-md-2">
-        {startTime} <em>({ago})</em>
-      </div>
-      <div className="col-xs-4 col-md-4">
-        {this.props.description}{active}
-        {stop}
-      </div>
-      <div className="col-xs-2 col-md-2">
-        {duration}
-      </div>
-      <div className="col-xs-2 col-md-2">
-        <GoalSelector goals={this.state.goals} listener={this.goalChanged} {...this.state.goal}/>
-      </div>
-    </div>`
+    if isTable
+      return `<tr>
+          <td>
+            <ActivityTime time={this.props.start} type="start" activityUpdateUrl={this.props.activity_update_url} />
+            &nbsp;-&nbsp;
+            <ActivityTime time={this.props.end} type="end" activityUpdateUrl={this.props.activity_update_url} />
+          </td>
+          <td>
+            {startTime} <em>({ago})</em>
+          </td>
+          <td>
+            {this.props.description}{active}
+            {stop}
+          </td>
+          <td>
+            {duration}
+          </td>
+          <td>
+            <GoalSelector goals={this.state.goals} listener={this.goalChanged} {...this.state.goal}/>
+          </td>
+        </tr>`
+    else
+      return `<div className="row">
+        <div className="col-xs-2 col-md-2">
+          <ActivityTime time={this.props.start} />
+          &nbsp;-&nbsp;
+          <ActivityTime time={this.props.end} activityUpdateUrl={this.props.updateUrl} />
+        </div>
+        <div className="col-xs-2 col-md-2">
+          {startTime} <em>({ago})</em>
+        </div>
+        <div className="col-xs-4 col-md-4">
+          {this.props.description}{active}
+          {stop}
+        </div>
+        <div className="col-xs-2 col-md-2">
+          {duration}
+        </div>
+        <div className="col-xs-2 col-md-2">
+          <GoalSelector goals={this.state.goals} listener={this.goalChanged} {...this.state.goal}/>
+        </div>
+      </div>`
 
   componentDidMount: =>
     @setState interval: setInterval @updateCount, 1000
