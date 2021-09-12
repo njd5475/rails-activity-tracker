@@ -45,6 +45,8 @@ class Activity extends React.Component
           </td>
           <td>
             {this.props.description}{active}
+          </td>
+          <td>
             {stop}{resume}
           </td>
           <td>
@@ -64,8 +66,10 @@ class Activity extends React.Component
         <div className="col-xs-2 col-md-2">
           {startTime} <em>({ago})</em>
         </div>
-        <div className="col-xs-4 col-md-4">
+        <div className="col-xs-2 col-md-2">
           {this.props.description}{active}
+        </div>
+        <div className="col-xs-2 col-md-2">
           {stop}
         </div>
         <div className="col-xs-2 col-md-2">

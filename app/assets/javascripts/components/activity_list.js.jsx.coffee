@@ -28,6 +28,7 @@ class ActivityList extends React.Component
               <th>Begin - End</th>
               <th>Date (time elapsed)</th>
               <th>Activity name</th>
+              <th>Actions</th>
               <th>Duration</th>
               <th>Goal</th>
             </tr>

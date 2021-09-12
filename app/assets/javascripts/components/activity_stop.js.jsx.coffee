@@ -22,8 +22,6 @@ class ActivityStop extends React.Component
 
     handleStop = @props.stop or this.handleStop
 
-    `<button onClick={handleStop}>
-      {btnDisplay}
-    </button>`
+    `<button onClick={handleStop}><i className="glyphicon glyphicon-stop"></i></button>`
 
 @ActivityStop = ActivityStop

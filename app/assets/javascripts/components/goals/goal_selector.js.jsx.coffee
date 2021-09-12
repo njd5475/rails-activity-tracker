@@ -3,27 +3,29 @@ class GoalSelector extends React.Component
   constructor: (props) ->
     super props
     init = 'noselect'
-    init = 'select' if !props.name
     @state =
+      editing: !!props.id
+      name: props.name
       display: init
       options: @optionList(props)
   
   componentWillReceiveProps: (props) =>
-    display = 'select'
-    if props.id
-      display = 'noselect' 
-    @setState display: display, options: @optionList(props)
+    @props = props
+    console.log "Component Will Receive Props"
+    display = @state.display
+    display = 'noselect' if !@state.editing && display == 'select' && props.name
+
+    @setState display: display, options: @optionList(props), name: props.name
 
   editGoal: =>
-    if @state.display == 'select'
-      @setState display: 'noselect'
-    else
-      @setState display: 'select'
+    @setState editing: true, display: 'select'
 
   hideSelect: =>
-    @setState display: 'noselect'
+    console.log "Hide the select"
+    @setState editing: false, display: 'noselect'
 
   changeSelection: (e) =>
+    console.log "Change selection"
     goalId = e.target.selectedOptions.item(0).value
     goal = undefined
     if goalId != ' '
@@ -36,9 +38,9 @@ class GoalSelector extends React.Component
     goal = ""
 
     if @state.display == 'select'
-      goal = `<select defaultValue="DEFAULT" value={this.id} onChange={this.changeSelection} onMouseOut={this.hideSelect}>{this.state.options}</select>`
+      goal = `<select defaultValue="DEFAULT" value={this.id} onChange={this.changeSelection}>{this.state.options}</select>`
     else
-      goal = `<div onClick={this.editGoal}>{this.props.name || 'N/A'}</div>`
+      goal = `<div onClick={this.editGoal}>{this.state.name || 'N/A'}</div>`
 
     `<div>{goal}</div>`
 
