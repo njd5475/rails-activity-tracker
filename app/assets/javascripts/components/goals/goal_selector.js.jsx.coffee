@@ -11,7 +11,6 @@ class GoalSelector extends React.Component
   
   componentWillReceiveProps: (props) =>
     @props = props
-    console.log "Component Will Receive Props"
     display = @state.display
     display = 'noselect' if !@state.editing && display == 'select' && props.name
 
@@ -21,11 +20,9 @@ class GoalSelector extends React.Component
     @setState editing: true, display: 'select'
 
   hideSelect: =>
-    console.log "Hide the select"
     @setState editing: false, display: 'noselect'
 
   changeSelection: (e) =>
-    console.log "Change selection"
     goalId = e.target.selectedOptions.item(0).value
     goal = undefined
     if goalId != ' '

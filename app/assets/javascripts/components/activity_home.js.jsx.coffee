@@ -17,7 +17,6 @@ class ActivityHome extends React.Component
       @setState goals: theGoals, @updateTabs
 
     @state.activityObj.on 'sync change reset add remove', =>
-      console.log(@state.activityObj.getCurrent())
       @setState 
         activities: @state.activityObj.getAll()
         activityObj: @state.activityObj
@@ -34,7 +33,6 @@ class ActivityHome extends React.Component
       @updateGoals()
 
   updateTabs: =>
-    console.log("Updating tabs called")
     @tabs.updateMe()
 
   updateActivities: =>
@@ -56,10 +54,8 @@ class ActivityHome extends React.Component
 
     current = null
     if @state.current?
-      console.log("We have a current activity in state")
       current = `<ActivityCurrent key={0} onStopCurrent={this.onStopCurrent} activity={this.state.current.attributes} />`
     else
-      console.log("There is no current activity")
       current = `<div key={0} className="row"><h1>No current activity</h1></div>`
 
     updater = @updateActivities

@@ -22,7 +22,7 @@ class ActivityNew extends React.Component
       @props.changed() if @props.changed?
       callback() if callback
     ).fail(=>
-      console.log(arguments)
+      console.error(arguments)
     )
     return false #for form submission
 
