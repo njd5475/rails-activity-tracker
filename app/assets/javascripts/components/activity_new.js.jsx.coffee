@@ -28,29 +28,24 @@ class ActivityNew extends React.Component
 
   render: =>
     newText = 'New'
-    trackingText = "Start Tracking"
+    trackingText = "Start"
     if @props.collection.getCurrent()?
       trackingText = "Switch"
       newText = 'Switch'
 
     `<div className="row">
       <div className="col-md-12">
-        <h3>{newText} Activity</h3>
-        <form className="form-inline">
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              value={this.state.userInput}
-              onChange={this.handleChange} />
-              <div className="input-group-btn">
-            <button
-              type="submit"
-              className="btn btn-default pull-right"
-              onClick={this.startTracking}>{trackingText}</button>
-            </div>
+        <div className="container-fluid">
+          <div className="row">
+            <h3>{newText} Activity</h3>
           </div>
-        </form>
+          <div className="row">
+          <div class="input-group">
+            <span class="input-group-addon" onClick={this.startTracking}><i class="glyphicon glyphicon-play"></i></span>
+            <input id="description" type="text" class="form-control" name="description" placeholder="Description" value={this.state.userInput} onChange={this.handleChange} />
+          </div>
+          </div>
+        </div>
       </div>
     </div>`
 

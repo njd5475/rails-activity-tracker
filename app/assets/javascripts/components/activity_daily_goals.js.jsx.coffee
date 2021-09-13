@@ -35,7 +35,7 @@ class ActivityDailyGoals extends React.Component
 
         `<div className="container-fluid">
             <div className="row">
-                <div className="col-md-9">
+                <div className="col-md-12">
                     <h2>Activity Daily Goals</h2>
                     <div className="row">
                         <div className="col-md-12">
@@ -67,7 +67,7 @@ class ActivityDailyGoals extends React.Component
                 </div>
             </div>
             <div className="row">
-                <div className="col-md-9">
+                <div className="col-md-12">
                     {goals}
                 </div>
             </div>

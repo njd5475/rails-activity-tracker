@@ -69,12 +69,14 @@ class ActivityHome extends React.Component
 
     `<div className='container-fluid'>
       <div className='row'>
-        <div className='col-md-6'>
+        <div className='col-md-7'>
           {current}
         </div>
-        <div className='col-md-3'>
+        <div className='col-md-5'>
           <div className="well">
-            <ActivityNew ref={ref => this.activityNew = ref} collection={this.state.activityObj} />
+            <div className="container-fluid">
+              <ActivityNew ref={ref => this.activityNew = ref} collection={this.state.activityObj} />
+            </div>
           </div>
         </div>
       </div>

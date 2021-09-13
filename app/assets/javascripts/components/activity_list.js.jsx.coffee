@@ -21,7 +21,7 @@ class ActivityList extends React.Component
       <div className="row">
         <h3>{title}</h3>
       </div>
-      <div className="table-responsive">
+      <div className="table-responsive row">
         <table className="table table-striped table-hover">
           <thead>
             <tr>
