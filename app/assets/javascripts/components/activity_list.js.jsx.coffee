@@ -17,7 +17,7 @@ class ActivityList extends React.Component
     list = _.map activities, (activity) ->
       `<Activity startTracking={startTracking} table={true} key={activity.id} updater={updater} {...activity} />`
 
-    `<div className="container">
+    `<div className="container-fluid">
       <div className="row">
         <h3>{title}</h3>
       </div>
