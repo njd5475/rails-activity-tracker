@@ -5,6 +5,7 @@ class ActivityHistory extends React.Component
     super props
     
   render: =>
+
     `<div className="container-fluid">
       <div className="row">
         <div className="col-md-12">

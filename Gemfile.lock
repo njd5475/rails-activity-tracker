@@ -238,6 +238,7 @@ GEM
       sprockets-rails (>= 2.0.0)
     rails-assets-bootstrap (3.3.7)
       rails-assets-jquery (>= 1.9.1, < 4)
+    rails-assets-chartjs (2.8.0)
     rails-assets-countdownjs (2.6.0)
     rails-assets-jquery (3.4.1)
     rails-assets-moment (2.24.0)
@@ -343,6 +344,7 @@ DEPENDENCIES
   rack-livereload
   rails (~> 6.0)
   rails-assets-bootstrap (= 3.3.7)!
+  rails-assets-chartjs!
   rails-assets-countdownjs!
   rails-assets-moment!
   rails-assets-react-bootstrap!

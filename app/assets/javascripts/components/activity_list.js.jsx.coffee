@@ -19,7 +19,7 @@ class ActivityList extends React.Component
 
     `<div className="container-fluid">
       <div className="row">
-        <h3>{title}</h3>
+        <h3>{title} <span className="badge">{this.props.activities.length}</span></h3>
       </div>
       <div className="table-responsive row">
         <table className="table table-striped table-hover">
