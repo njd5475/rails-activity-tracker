@@ -13,9 +13,9 @@ module ValidationErrorSerializer
       }, status: :unprocessable_entity
     end
 
-    rescue_from StandardError do |e|
-      render json: {message: e.message}, status: :unprocessable_entity
-    end
+    # rescue_from StandardError do |e|
+    #   render json: {message: e.message}, status: :unprocessable_entity
+    # end
   end
 
   class Serializer
