@@ -16,7 +16,7 @@ class Goal < ActiveRecord::Base
   end
 
   def duration
-    self.activities.joins(:goal).select(Goal.arel_table['name']).select("(\"activities\".\"end\" - \"activities\".\"start\") as duration").sum(&:duration)
+    self.activities.joins(:goal).select(Goal.arel_table['name']).select("(\"activities\".\"end\" - \"activities\".\"start\") as duration").where.not(end: nil, start: nil).sum(&:duration)
   end
 
   def self.invalid_activities
