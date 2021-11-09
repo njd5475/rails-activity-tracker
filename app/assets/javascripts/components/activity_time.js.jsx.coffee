@@ -1,4 +1,3 @@
-#= require moment
 
 class ActivityTime extends React.Component
   constructor: (props) ->

@@ -1,5 +1,4 @@
 #= require underscore
-#= require moment
 
 class ActivitySummary extends React.Component
   constructor: (props) ->

@@ -66,6 +66,8 @@ class ActivityHome extends React.Component
     tabs.push name: "Summary",      component: `<ActivitySummary    key={tabs.length} startTracking={startTracking} activities={this.props.history} />`
     tabs.push name: "History",      component: `<ActivityHistory    key={tabs.length} startTracking={startTracking} updater={updater} activities={this.props.history} />`
     tabs.push name: "Goals",        component: `<ActivityDailyGoals key={tabs.length} startTracking={startTracking} list={this.state.goals} collection={this.state.goalsObj} />`
+    tabs.push name: "Visualize",    component: `<ActivityCharts     key={tabs.length} startTracking={startTracking} activities={this.props.history} />`
+
 
     `<div className='container-fluid'>
       <div className='row'>

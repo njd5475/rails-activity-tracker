@@ -1,4 +1,3 @@
-#= require moment
 #= require countdownjs
 
 class ActivityCurrent extends React.Component

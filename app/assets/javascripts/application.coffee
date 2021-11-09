@@ -11,13 +11,15 @@
 # about supported directives.
 #
 
+#= require moment
+#= require moment-timezone
+#= require chartjs
 #= require jquery
 #= require jquery.turbolinks
 #= require jquery_ujs
 #= require bootstrap
 #= require turbolinks
 #= require react
-#= require react_ujs
 #= require react-bootstrap
 #= require components
 #= require models

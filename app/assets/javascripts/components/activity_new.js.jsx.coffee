@@ -40,9 +40,9 @@ class ActivityNew extends React.Component
             <h3>{newText} Activity</h3>
           </div>
           <div className="row">
-          <div class="input-group">
-            <span class="input-group-addon" onClick={this.startTracking}><i class="glyphicon glyphicon-play"></i></span>
-            <input id="description" type="text" class="form-control" name="description" placeholder="Description" value={this.state.userInput} onChange={this.handleChange} />
+          <div className="input-group">
+            <span className="input-group-addon" onClick={this.startTracking}><i className="glyphicon glyphicon-play"></i></span>
+            <input id="description" type="text" className="form-control" name="description" placeholder="Description" value={this.state.userInput} onChange={this.handleChange} />
           </div>
           </div>
         </div>

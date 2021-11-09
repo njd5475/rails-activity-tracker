@@ -242,6 +242,8 @@ GEM
     rails-assets-countdownjs (2.6.0)
     rails-assets-jquery (3.4.1)
     rails-assets-moment (2.24.0)
+    rails-assets-moment-timezone (0.5.25)
+      rails-assets-moment (>= 2.9.0)
     rails-assets-react (16.1.0)
     rails-assets-react-bootstrap (0.31.5)
       rails-assets-react
@@ -347,6 +349,7 @@ DEPENDENCIES
   rails-assets-chartjs!
   rails-assets-countdownjs!
   rails-assets-moment!
+  rails-assets-moment-timezone!
   rails-assets-react-bootstrap!
   rails-assets-reactjs--react-transition-group!
   rails-assets-typeahead.js!

@@ -15,6 +15,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-react-bootstrap'
   gem 'rails-assets-countdownjs'
   gem 'rails-assets-moment'
+  gem 'rails-assets-moment-timezone'
   gem 'rails-assets-chartjs'
   gem 'rails-assets-typeahead.js'
   gem 'rails-assets-reactjs--react-transition-group'
