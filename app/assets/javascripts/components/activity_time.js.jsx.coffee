@@ -6,6 +6,7 @@ class ActivityTime extends React.Component
       time: props.time
       display: "noselect"
       options: @optionList(props)
+      changing: false
 
   editTime: =>
     if @state.display == "select"
@@ -22,22 +23,24 @@ class ActivityTime extends React.Component
     m = moment(val)
 
     if @props.type == 'start'
-      ($.ajax 
-        url: @props.activityUpdateUrl,
-        contentType: 'application/json'
-        type: 'PUT', 
-        data: JSON.stringify(start: m.format())
-      ).success (a) =>
-        @setState time: a.start, display: 'noselect', options: @optionList(@state)
+      @setState changing: true, () =>
+        ($.ajax 
+          url: @props.activityUpdateUrl,
+          contentType: 'application/json'
+          type: 'PUT', 
+          data: JSON.stringify(start: m.format())
+        ).success (a) =>
+          @setState changing: false, time: a.start, display: 'noselect', options: @optionList(@state)
     
     if @props.type == 'end'
-      ($.ajax 
-        url: @props.activityUpdateUrl,
-        contentType: 'application/json'
-        type: 'PUT', 
-        data: JSON.stringify(end: m.format())
-      ).success (a) =>
-        @setState time: a.end, display: 'noselect', options: @optionList(@state)
+      @setState changing: true, () =>
+        ($.ajax 
+          url: @props.activityUpdateUrl,
+          contentType: 'application/json'
+          type: 'PUT', 
+          data: JSON.stringify(end: m.format())
+        ).success (a) =>
+          @setState changing: false, time: a.end, display: 'noselect', options: @optionList(@state)
 
 
   render: ->
@@ -49,6 +52,9 @@ class ActivityTime extends React.Component
       time = `<select onMouseOut={this.hideSelect} onChange={this.changeActivity}>{this.state.options}</select>`
     else
       time = `<span onClick={this.editTime}>{time}</span>`
+
+    if @state.changing
+      time = `<Spinner />`
 
     `<span>{time}</span>`
 

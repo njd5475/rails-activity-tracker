@@ -9,6 +9,7 @@ class ActivityHome extends React.Component
       activities: props.initialCollection
       goalsObj: new GoalCollection(props.goals)
       goals: props.goals
+      loading: false
 
     @state.current = @state.activityObj.getCurrent()
 
@@ -39,8 +40,18 @@ class ActivityHome extends React.Component
     @state.activityObj.fetch()
 
   startTracking: (desc) =>
-    @activityNew.setTracking desc, () =>
-      @updateActivities()
+    tracking = $.Deferred()
+
+    @setState loading: true, () =>
+      @activityNew.sendNewActivity desc, () =>
+        @updateActivities()
+        @setState loading: false
+      .success =>
+        tracking.resolve()
+      .error =>
+        tracking.reject()
+    
+    return tracking.promise()
 
   updateGoals: =>
     @state.goalsObj.fetch()
@@ -54,9 +65,12 @@ class ActivityHome extends React.Component
 
     current = null
     if @state.current?
-      current = `<ActivityCurrent key={0} onStopCurrent={this.onStopCurrent} activity={this.state.current.attributes} />`
+      current = `<ActivityCurrent key={0} onStopCurrent={this.onStopCurrent} activity={this.state.current.attributes} loading={this.state.loading} />`
     else
-      current = `<div key={0} className="row"><h1>No current activity</h1></div>`
+      current = `<div key={0} className="row">
+          <h1>No current activity</h1>
+          {this.state.loading ? <Spinner /> : ''}
+        </div>`
 
     updater = @updateActivities
     startTracking = @startTracking

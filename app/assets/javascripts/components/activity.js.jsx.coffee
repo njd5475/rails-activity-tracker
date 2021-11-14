@@ -7,6 +7,7 @@ class Activity extends React.Component
     @state = 
       count: 0
       goals: []
+      changing: false
 
   render: =>
     countdown.setLabels(
@@ -26,6 +27,10 @@ class Activity extends React.Component
       stop = `<ActivityStop stop={handler} />`
     else
       resume = `<ActivityResume resume={this.handleResume} />`
+
+    if @state.changing
+      stop = ''
+      resume = `<Spinner />`
 
     isTable = @props.table or false
 
@@ -92,11 +97,19 @@ class Activity extends React.Component
     @setState count: @state.count+1
 
   handleResume: =>
-    @props.startTracking @props.description
+    @setState changing: true, () =>
+      @props.startTracking(@props.description)
+        .always =>
+          @setState changing: false
 
   handleStop: =>
-    ($.ajax url: @props.stop, type: 'PUT').success =>
-      @props.updater()
+    @setState changing: true, () =>
+      ($.ajax url: @props.stop, type: 'PUT')
+        .success =>
+          @props.updater()
+          @setState changing: false
+        .error =>
+          @setState changing: false
 
   goalChanged: (goal) =>
     ($.ajax url: "#{goal.activities_url}/#{this.props.id}", type: 'PUT').success =>

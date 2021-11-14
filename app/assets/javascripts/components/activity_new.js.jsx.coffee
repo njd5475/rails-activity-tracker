@@ -12,18 +12,20 @@ class ActivityNew extends React.Component
 
   startTracking: (e) =>
     e.preventDefault()
-    @startNew @state.userInput
-    return false
+    return @sendNewActivity @state.userInput
 
-  startNew: (desc, callback) =>
+  sendNewActivity: (desc, callback) =>
     model = new ActivityModel description: desc
-    model.save().success(=>
+    return model.save().success(=>
       @props.collection.fetch()
       @props.changed() if @props.changed?
       callback() if callback
-    ).fail(=>
+    ).fail( =>
       console.error(arguments)
     )
+
+  startNew: (desc, callback) =>
+    @sendNewActivity desc, callback
     return false #for form submission
 
   render: =>

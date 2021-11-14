@@ -48,7 +48,6 @@ class ActivitiesController < ApplicationController
   end
 
   def update
-
     permitted = params.permit(:description, :start, :end, :goal_id, :id)
     @activity = Activity.for_user(current_user).find(params[:id]) or not_found
     
@@ -59,17 +58,17 @@ class ActivitiesController < ApplicationController
     if permitted.has_key?(:start) then
       @activity.start = Time.zone.parse permitted[:start]
     end
-
+    
     if permitted.has_key?(:end) then
       @activity.end = Time.zone.parse permitted[:end]
     end
-
+    
     if permitted.has_key?(:goal_id) then
       @activity.goal = Goal.for_user(current_user).find permitted[:goal_id]
     end
-
+    
     @activity.save!
-
+    
     render json: @activity
   end
 
