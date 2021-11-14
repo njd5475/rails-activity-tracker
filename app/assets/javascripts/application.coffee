@@ -23,6 +23,7 @@
 #= require react-bootstrap
 #= require components
 #= require models
+#= require_tree ./components/spinners
 #= require_tree .
 
 # request permission on page load

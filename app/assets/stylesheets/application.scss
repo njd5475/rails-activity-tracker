@@ -58,3 +58,72 @@ $theme-colors: (
 body {
     background-color: $body-bg
 }
+
+.circle-spinner {
+	position: relative;
+	min-width: 100%;
+	min-height: 100%;
+	float: left;
+	-webkit-animation: cricle-spinner infinite .75s linear;
+		 -moz-animation: circle-spinner infinite .75s linear;
+			 -o-animation: circle-spinner infinite .75s linear;
+					animation: circle-spinner infinite .75s linear;
+	border: 2px solid rgba(125, 125, 125, 0.9);
+	border-top-color: rgba(0, 0, 0, .1);
+	border-right-color: rgba(0, 0, 0, .1);
+	border-bottom-color: rgba(0, 0, 0, .1);
+	border-radius: 100%;
+}
+
+@keyframes circle-spinner {
+from {
+	transform: rotate(0deg);
+}
+to {
+	transform: rotate(360deg);
+}
+}
+
+.cssload-container {
+	width: 49px;
+	height: 49px;
+	text-align: center;
+}
+
+.cssload-zenith {
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	border-radius: 50%;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	box-shadow: 3px 3px 1px rgb(0,0,0);
+	animation: cssload-spin 690ms infinite linear;
+		-o-animation: cssload-spin 690ms infinite linear;
+		-ms-animation: cssload-spin 690ms infinite linear;
+		-webkit-animation: cssload-spin 690ms infinite linear;
+		-moz-animation: cssload-spin 690ms infinite linear;
+}
+
+
+
+@keyframes cssload-spin {
+	100%{ transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-o-keyframes cssload-spin {
+	100%{ -o-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-ms-keyframes cssload-spin {
+	100%{ -ms-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-webkit-keyframes cssload-spin {
+	100%{ -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-moz-keyframes cssload-spin {
+	100%{ -moz-transform: rotate(360deg); transform: rotate(360deg); }
+}
