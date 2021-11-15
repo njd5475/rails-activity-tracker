@@ -15,7 +15,7 @@ class ActivityList extends React.Component
     startTracking = @props.startTracking
 
     list = _.map activities, (activity) ->
-      `<Activity startTracking={startTracking} table={true} key={activity.id} updater={updater} activity={activity} />`
+      `<Activity key={activity.id} startTracking={startTracking} table={true} key={activity.id} updater={updater} activity={activity} />`
 
     `<div className="container-fluid">
       <div className="row">

@@ -18,7 +18,7 @@ class Activity extends React.Component
     countdown.setLabels(
       '|||hr|d',
       'ms|sec|min|||wks||yrs',
-      ', ');
+      ', ')
     { end, start, description, activity_update_url } = @state.activity.attributes
     endTime = if end then moment(end) else null
     duration = countdown(moment(start), endTime).toString()

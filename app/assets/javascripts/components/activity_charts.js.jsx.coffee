@@ -99,22 +99,22 @@ class ActivityCharts extends React.Component
     fn = @byChange
 
     options = `
-      <select onChange={fn}>{
+      <select defaultValue="month" onChange={fn}>{
         [ 
-          <option value="day">By Day</option>,
-          <option value="week">By Week</option>,
-          <option value="month" selected>By Month</option>,
-          <option value="year">By Year</option>,
+          <option key={1} value="day">By Day</option>,
+          <option key={2} value="week">By Week</option>,
+          <option key={3} value="month">By Month</option>,
+          <option key={4} value="year">By Year</option>,
         ]  
       }</select>`
 
     datasetChange = @datasetChange
     datasetOptions = `
-      <select onChange={datasetChange}>{
+      <select defaultValue="Total" onChange={datasetChange}>{
         [
-          <option value="Total" selected>Total</option>,
-          <option value="goal">By Goal</option>,
-          <option value="activity">By Activity</option>,
+          <option key={1} value="Total">Total</option>,
+          <option key={2} value="goal">By Goal</option>,
+          <option key={3} value="activity">By Activity</option>,
         ]
       }</select>
       `

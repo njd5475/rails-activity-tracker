@@ -55,7 +55,7 @@ class ActivityTime extends React.Component
       time = moment(@state.time).format("hh:mm")
 
     if @state.display == 'select'
-      time = `<select onMouseOut={this.hideSelect} onChange={this.changeActivity}>{this.state.options}</select>`
+      time = `<select defaultValue={this.state.options[0]} onMouseOut={this.hideSelect} onChange={this.changeActivity}>{this.state.options}</select>`
     else
       time = `<span onClick={this.editTime}>{time}</span>`
 

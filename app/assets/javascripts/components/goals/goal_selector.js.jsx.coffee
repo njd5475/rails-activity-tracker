@@ -44,7 +44,7 @@ class GoalSelector extends React.Component
 
     monitor = []
     if @state.updating || @state.loading
-      monitor.push `<Spinner />`
+      monitor.push `<Spinner key={'Spinner'}/>`
       goal = []
 
     goalSelectorStyle =
