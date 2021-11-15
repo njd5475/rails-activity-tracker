@@ -47,7 +47,10 @@ class GoalSelector extends React.Component
       monitor.push `<Spinner />`
       goal = []
 
-    `<div>{monitor}{goal}</div>`
+    goalSelectorStyle =
+      minWidth: '220px'
+
+    `<div style={goalSelectorStyle}>{monitor}{goal}</div>`
 
   optionList: (props) =>
     return [] if !props.goals

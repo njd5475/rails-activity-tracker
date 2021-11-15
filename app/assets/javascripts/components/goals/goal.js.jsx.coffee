@@ -12,7 +12,6 @@ class Goal extends React.Component
 
   render: =>
     createdDate = moment(this.props.created_at).format('YYYY MMM DD');
-
     targetDate = moment(this.props.target_date).format('YYYY MMM DD');
 
     labelStyle = float: 'left', marginRight: 12

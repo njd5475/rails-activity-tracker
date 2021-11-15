@@ -124,13 +124,15 @@ class Activity extends React.Component
       @setState goal: goal
 
   retrieveGoals: =>
-    if @props.goals_url
-      ($.ajax url: @props.goals_url, type: 'GET',  dataType: 'json').success (results) =>
+    goalUrl = @state.activity.attributes.goals_url
+    if goalUrl
+      ($.ajax url: goalUrl, type: 'GET',  dataType: 'json').success (results) =>
         @setState goals: results
 
   retrieveGoal: =>
-    if @props.goal_url
-      ($.ajax url: @props.goal_url, type: 'GET', dataType: 'json').success (goal) =>
+    goalUrl = @state.activity.attributes.goal_url
+    if goalUrl
+      ($.ajax url: goalUrl, type: 'GET', dataType: 'json').success (goal) =>
         @setState goal: goal
 
 @Activity = Activity
