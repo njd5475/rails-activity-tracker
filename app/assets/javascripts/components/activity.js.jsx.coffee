@@ -5,24 +5,30 @@ class Activity extends React.Component
   constructor: (props) ->
     super props
     @state = 
+      activity: new ActivityModel(props.activity)
       count: 0
       goals: []
       changing: false
+
+  refreshActivity: =>
+    @state.activity.fetch().done =>
+      @setState activity: @state.activity
 
   render: =>
     countdown.setLabels(
       '|||hr|d',
       'ms|sec|min|||wks||yrs',
       ', ');
-    endTime = if @props.end then moment(@props.end) else null
-    duration = countdown(moment(@props.start), endTime).toString()
+    { end, start, description, activity_update_url } = @state.activity.attributes
+    endTime = if end then moment(end) else null
+    duration = countdown(moment(start), endTime).toString()
     active = ""
-    if !@props.end
+    if !end
       active = " (active)"
 
     resume = ''
     stop = ''
-    if !@props.end
+    if !end
       handler = this.handleStop
       stop = `<ActivityStop stop={handler} />`
     else
@@ -34,21 +40,23 @@ class Activity extends React.Component
 
     isTable = @props.table or false
 
-    startTime = moment(this.props.start).format('L')
-    ago = moment(this.props.start).fromNow()
+    startTime = moment(start).format('L')
+    ago = moment(start).fromNow()
+
+    refreshActivity = @refreshActivity
 
     if isTable
       return `<tr>
           <td>
-            <ActivityTime time={this.props.start} type="start" activityUpdateUrl={this.props.activity_update_url} />
+            <ActivityTime time={start} type="start" activityUpdateUrl={activity_update_url} refreshActivity={refreshActivity}/>
             &nbsp;-&nbsp;
-            <ActivityTime time={this.props.end} type="end" activityUpdateUrl={this.props.activity_update_url} />
+            <ActivityTime time={end} type="end" activityUpdateUrl={activity_update_url} refreshActivity={refreshActivity}/>
           </td>
           <td>
             {startTime} <em>({ago})</em>
           </td>
           <td>
-            {this.props.description}{active}
+            {description}{active}
           </td>
           <td>
             {stop}{resume}
@@ -63,15 +71,15 @@ class Activity extends React.Component
     else
       return `<div className="row">
         <div className="col-xs-2 col-md-2">
-          <ActivityTime time={this.props.start} />
+          <ActivityTime time={start} />
           &nbsp;-&nbsp;
-          <ActivityTime time={this.props.end} activityUpdateUrl={this.props.updateUrl} />
+          <ActivityTime time={end} activityUpdateUrl={this.props.updateUrl} />
         </div>
         <div className="col-xs-2 col-md-2">
           {startTime} <em>({ago})</em>
         </div>
         <div className="col-xs-2 col-md-2">
-          {this.props.description}{active}
+          {description}{active}
         </div>
         <div className="col-xs-2 col-md-2">
           {stop}
@@ -112,7 +120,7 @@ class Activity extends React.Component
           @setState changing: false
 
   goalChanged: (goal) =>
-    ($.ajax url: "#{goal.activities_url}/#{this.props.id}", type: 'PUT').success =>
+    ($.ajax url: "#{goal.activities_url}/#{this.state.activity.attributes.id}", type: 'PUT').success =>
       @setState goal: goal
 
   retrieveGoals: =>

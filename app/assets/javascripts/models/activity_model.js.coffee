@@ -1,5 +1,7 @@
 class ActivityModel extends Backbone.Model
-  url: '/activities'
+  url: -> 
+    "/activities/#{this.attributes.id}"
+  
   initialize: ->
 
   #the current task is the task without an end time

@@ -26,6 +26,7 @@ class ActivitiesController < ApplicationController
     h[:goals_url] = goals_path()
     h[:goal_url] = goal_path(a.goal) if a.goal
     h[:activity_update_url] = activity_path(a)
+    h[:url] = activity_path(a)
     h
   end
 

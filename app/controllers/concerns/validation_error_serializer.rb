@@ -7,9 +7,10 @@ module ValidationErrorSerializer
     end
 
     rescue_from ActiveRecord::RecordInvalid do |e|
+      errs = e.record.errors
       render json: {
         message: "Validation Failed",
-        errors: Serializer.new(e.record).serialize
+        errors: Serializer.new(e.record, errs.attribute_names, errs.details).serialize
       }, status: :unprocessable_entity
     end
 
@@ -40,7 +41,7 @@ module ValidationErrorSerializer
       I18n.t(
         underscored_resource_name,
         scope: [:resources],
-        locale: :api,
+        locale: :en,
         default: @record.class.to_s
       )
     end
@@ -49,7 +50,7 @@ module ValidationErrorSerializer
        I18n.t(
         @field,
         scope: [:fields, underscored_resource_name],
-        locale: :api,
+        locale: :en,
         default: @field.to_s
       )
     end
@@ -58,7 +59,7 @@ module ValidationErrorSerializer
       I18n.t(
         @details[:error],
         scope: [:errors, :codes],
-        locale: :api,
+        locale: :en,
         default: @details[:error].to_s
       )
     end

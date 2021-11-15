@@ -30,7 +30,10 @@ class ActivityTime extends React.Component
           type: 'PUT', 
           data: JSON.stringify(start: m.format())
         ).success (a) =>
-          @setState changing: false, time: a.start, display: 'noselect', options: @optionList(@state)
+          @setState changing: false, time: a.start, display: 'noselect', options: @optionList(@state), () =>
+            @props.refreshActivity()
+        .error (a) =>
+          @setState changing: false
     
     if @props.type == 'end'
       @setState changing: true, () =>
@@ -40,7 +43,10 @@ class ActivityTime extends React.Component
           type: 'PUT', 
           data: JSON.stringify(end: m.format())
         ).success (a) =>
-          @setState changing: false, time: a.end, display: 'noselect', options: @optionList(@state)
+          @setState changing: false, time: a.end, display: 'noselect', options: @optionList(@state), () =>
+            @props.refreshActivity()
+        .error (a) =>
+          @setState changing: false
 
 
   render: ->
