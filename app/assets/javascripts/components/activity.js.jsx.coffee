@@ -106,16 +106,17 @@ class Activity extends React.Component
 
   handleResume: =>
     @setState changing: true, () =>
-      @props.startTracking(@props.description)
+      @props.startTracking(@props.activity.description)
         .always =>
           @setState changing: false
 
   handleStop: =>
     @setState changing: true, () =>
-      ($.ajax url: @props.stop, type: 'PUT')
+      ($.ajax url: @props.activity.stop, type: 'PUT')
         .success =>
           @props.updater()
-          @setState changing: false
+          @setState changing: false, () =>
+            @refreshActivity()
         .error =>
           @setState changing: false
 

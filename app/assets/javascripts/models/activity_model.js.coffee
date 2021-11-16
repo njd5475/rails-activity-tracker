@@ -1,6 +1,7 @@
 class ActivityModel extends Backbone.Model
   url: -> 
-    "/activities/#{this.attributes.id}"
+    return "/activities/#{this.attributes.id}" if this.attributes.id
+    "/activities"
   
   initialize: ->
 
