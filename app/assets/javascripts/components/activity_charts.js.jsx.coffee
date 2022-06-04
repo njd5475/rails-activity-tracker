@@ -10,6 +10,7 @@ class ActivityCharts extends React.Component
       page: 0
       dataset: 'Total'
       agg: 'month'
+      
       charts:
         'day': ChartByDay
         'week': ChartByWeek

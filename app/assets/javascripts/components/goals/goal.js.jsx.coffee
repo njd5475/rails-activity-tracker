@@ -1,5 +1,10 @@
 
 class Goal extends React.Component
+
+  constructor: (props) ->
+
+    debugger if not props.name?
+
   remove: =>
     @props.model.destroy().success =>
       @props.list.fetch()
@@ -16,6 +21,8 @@ class Goal extends React.Component
 
     labelStyle = float: 'left', marginRight: 12
     titleStyle = paddingTop: 8, display: 'inline-block'
+
+    console.log('Goal name=' + this.props.name);
 
     `<div className="panel panel-default">
       <div className="panel-heading">

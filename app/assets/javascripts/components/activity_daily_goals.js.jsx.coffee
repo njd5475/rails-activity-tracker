@@ -16,12 +16,12 @@ class ActivityDailyGoals extends React.Component
     newGoal: (e) =>
         e.preventDefault()
 
-        @setState working: true
-        goal = new GoalModel name: @state.userInput
-        goal.save().success =>
-            @props.collection.fetch().success =>
-                @setState goals: @props.collection.getAll()
-            @setState working: false
+        @setState working: true, () => 
+            goal = new GoalModel name: @state.userInput
+            goal.save().success =>
+                @props.collection.fetch().success =>
+                    @setState goals: @props.collection.getAll(), () =>
+                        @setState working: false
 
     render: =>
         disabled = @state.working
@@ -31,6 +31,7 @@ class ActivityDailyGoals extends React.Component
         changedListener = @changed
         goals = @state.goals.map (goal, i) =>
             model = theList.find (g) -> g.id == goal.id
+            goal = goal.attributes if goal.attributes?
             `<Goal key={i} {...goal} list={theList} model={model} changed={changedListener} />`
 
         `<div className="container-fluid">

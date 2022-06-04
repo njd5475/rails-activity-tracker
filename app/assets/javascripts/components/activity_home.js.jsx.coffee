@@ -4,6 +4,7 @@
 class ActivityHome extends React.Component
 
   constructor: (props) ->
+    debugger if not props.goals[0]
     @state = 
       activityObj: new ActivityCollection(props.initialCollection)
       activities: props.initialCollection
@@ -15,6 +16,7 @@ class ActivityHome extends React.Component
 
     @state.goalsObj.on 'sync change reset add remove', =>
       theGoals = @state.goalsObj.getAll()
+      console.log('synchronizing the goals')
       @setState goals: theGoals, @updateTabs
 
     @state.activityObj.on 'sync change reset add remove', =>
