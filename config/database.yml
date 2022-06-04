@@ -15,7 +15,6 @@ development:
   <<: *default
   database: railstime_devel
   username: railstime_dev
-  #password: d3vT3st@r
   password: apassword
   host: localhost
   port: 5432

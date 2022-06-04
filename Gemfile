@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 # add additional items here at the top.
-ruby "2.5.1"
 
 gem 'exception_notification'
 
@@ -9,6 +8,7 @@ gem 'devise'
 gem 'omniauth-google-oauth2'
 # security patch https://nvd.nist.gov/vuln/detail/CVE-2015-9284
 gem 'omniauth-rails_csrf_protection'
+gem 'yarn'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap', '3.3.7'
@@ -16,7 +16,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-countdownjs'
   gem 'rails-assets-moment'
   gem 'rails-assets-moment-timezone'
-  gem 'rails-assets-chartjs'
+  gem 'rails-assets-chartjs', '2.8.0'
   gem 'rails-assets-typeahead.js'
   gem 'rails-assets-reactjs--react-transition-group'
 end
@@ -45,6 +45,8 @@ gem 'coffee-rails', '~> 5.0.0'
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
+
+gem 'net-smtp'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

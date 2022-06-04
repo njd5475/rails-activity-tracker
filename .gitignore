@@ -2,6 +2,7 @@
 *.rbc
 capybara-*.html
 .rspec
+passenger.*
 /log
 /tmp
 /db/*.sqlite3

@@ -17,6 +17,13 @@ Wip
 
 - [ ] Daily Goals
 
+Building
+===
+
+Requires dependencies:
+
+- libpq-dev
+
 Live Example
 ===
 
