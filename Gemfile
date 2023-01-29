@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby "3.1.3"
+
 # add additional items here at the top.
 
 gem 'exception_notification'
