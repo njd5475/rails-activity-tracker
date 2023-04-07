@@ -2,7 +2,7 @@ Railstime
 ===
 
 Simple web style application for tracking activities during the day. Basically a port of hamster to rails.
-With some additional features planned.
+With some additional features planned. And more.
 
 Features List
 ===
